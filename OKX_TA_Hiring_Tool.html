@@ -1,0 +1,2820 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+<title>OKX TA · Hiring Platform</title>
+<style>
+/* ─────────────────────────────────────────
+   OKX HIRING PLATFORM — OFFICIAL OKX BRAND
+   White #FFFFFF · Black #000000 · Dove Gray #666666
+───────────────────────────────────────── */
+:root {
+  /* OKX brand accent = black (primary CTA) */
+  --yellow:      #000000;
+  --yellow-dim:  rgba(0,0,0,.06);
+  --yellow-mid:  rgba(0,0,0,.15);
+  --yellow-dark: #000000;
+
+  --bg:          #f5f5f5;
+  --sidebar-bg:  #000000;
+  --sidebar-txt: #888888;
+  --sidebar-act: #ffffff;
+
+  --white:       #ffffff;
+  --surface:     #ffffff;
+  --surface2:    #f7f7f7;
+  --border:      #e8e8e8;
+  --border2:     #d4d4d4;
+
+  --text:        #000000;
+  --text2:       #333333;
+  --text3:       #666666;
+
+  --green:       #1a7a45;
+  --green-dim:   rgba(26,122,69,.08);
+  --red:         #cc2200;
+  --red-dim:     rgba(204,34,0,.08);
+  --amber:       #8a5c00;
+  --amber-dim:   rgba(138,92,0,.08);
+  --blue:        #0050b3;
+  --blue-dim:    rgba(0,80,179,.08);
+  --purple:      #5b21b6;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 15px;
+  display: flex;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  width: 230px;
+  min-height: 100vh;
+  background: var(--sidebar-bg);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.sidebar-logo {
+  padding: 22px 20px 18px;
+  border-bottom: 1px solid #2a2a2a;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+.logo-icon {
+  width: 34px; height: 34px;
+  background: #ffffff;
+  border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 900; color: #000000;
+  letter-spacing: -.3px; flex-shrink: 0;
+}
+.logo-name { font-weight: 700; font-size: 15px; color: #fff; }
+.logo-tag  { font-size: 11px; color: #555; margin-top: 2px; }
+
+.sidebar-section {
+  padding: 20px 20px 6px;
+  font-size: 10.5px; font-weight: 700;
+  color: #444; letter-spacing: 1.2px; text-transform: uppercase;
+}
+
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 16px; border-radius: 6px; margin: 2px 10px;
+  cursor: pointer; color: var(--sidebar-txt);
+  font-size: 14px; font-weight: 500;
+  transition: all .15s; border: none; background: none;
+  width: calc(100% - 20px); text-align: left;
+}
+.nav-item:hover { background: #252525; color: #fff; }
+.nav-item.active {
+  background: #ffffff;
+  color: #000000;
+  font-weight: 700;
+}
+.nav-icon { font-size: 14px; width: 18px; text-align: center; flex-shrink: 0; }
+.nav-badge {
+  margin-left: auto; background: #2a2a2a; color: #666;
+  font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 10px;
+}
+.nav-item.active .nav-badge { background: rgba(0,0,0,.1); color: #444444; }
+
+.sidebar-footer {
+  margin-top: auto; padding: 16px 20px;
+  border-top: 1px solid #2a2a2a;
+}
+.sidebar-role { font-size: 11px; color: #444; }
+.sidebar-user { font-size: 13px; font-weight: 600; color: #888; margin-top: 2px; }
+
+/* ── MAIN ── */
+.main { flex: 1; display: flex; flex-direction: column; min-width: 0; overflow: hidden; }
+
+/* ── TOP BAR ── */
+.topbar {
+  height: 58px; background: var(--white);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; padding: 0 28px; gap: 16px;
+  position: sticky; top: 0; z-index: 50; flex-shrink: 0;
+}
+.topbar-left { flex: 1; }
+.topbar-title { font-size: 17px; font-weight: 700; color: var(--text); }
+.topbar-bc { font-size: 12px; color: var(--text3); margin-bottom: 1px; }
+.topbar-sep { color: var(--border2); margin: 0 5px; }
+.topbar-actions { display: flex; gap: 8px; align-items: center; }
+
+/* ── PAGE CONTENT ── */
+.page-content { flex: 1; overflow-y: auto; padding: 28px; }
+.view { display: none; }
+.view.active { display: block; animation: fadeIn .18s ease; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 18px; border-radius: 6px;
+  font-size: 14px; font-weight: 600; cursor: pointer;
+  border: none; transition: all .15s; white-space: nowrap;
+}
+.btn-primary { background: var(--yellow); color: #ffffff; }
+.btn-primary:hover { background: #222222; box-shadow: 0 2px 8px rgba(0,0,0,.18); }
+.btn-secondary { background: var(--surface); color: var(--text); border: 1.5px solid var(--border2); }
+.btn-secondary:hover { border-color: var(--yellow-dark); color: var(--text); }
+.btn-ghost { background: none; color: var(--text2); border: 1.5px solid var(--border); }
+.btn-ghost:hover { border-color: var(--border2); color: var(--text); }
+.btn-sm  { padding: 7px 14px; font-size: 13px; }
+.btn-xs  { padding: 4px 10px; font-size: 12px; }
+
+/* ── CARDS ── */
+.card    { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 22px; }
+.card-sm { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+
+.panel-title {
+  font-size: 11.5px; font-weight: 700; color: var(--text3);
+  letter-spacing: .8px; text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+/* ── GRID ── */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+
+/* ── FORMS ── */
+.f-group  { margin-bottom: 16px; }
+.f-label  {
+  display: block; font-size: 12px; font-weight: 700;
+  color: var(--text3); margin-bottom: 6px;
+  letter-spacing: .4px; text-transform: uppercase;
+}
+.f-input, .f-select, .f-textarea {
+  width: 100%; background: var(--surface2);
+  border: 1.5px solid var(--border); border-radius: 6px;
+  padding: 10px 13px; color: var(--text); font-size: 14.5px;
+  outline: none; transition: border-color .15s, box-shadow .15s;
+  font-family: inherit;
+}
+.f-input:focus, .f-select:focus, .f-textarea:focus {
+  border-color: #000000;
+  box-shadow: 0 0 0 3px rgba(0,0,0,.08);
+  background: var(--white);
+}
+.f-textarea { min-height: 110px; resize: vertical; line-height: 1.6; }
+.f-select option { background: #fff; }
+.f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+/* ── UPLOAD ZONE ── */
+.upload-zone {
+  border: 2px dashed var(--border2); border-radius: 8px;
+  padding: 44px 24px; text-align: center; cursor: pointer;
+  transition: all .2s; background: var(--surface2);
+}
+.upload-zone:hover, .upload-zone.over {
+  border-color: #000000;
+  background: rgba(0,0,0,.04);
+}
+.upload-zone input { display: none; }
+.upload-icon  { font-size: 36px; margin-bottom: 12px; opacity: .5; }
+.upload-title { font-size: 15px; font-weight: 600; color: var(--text); }
+.upload-sub   { font-size: 13px; color: var(--text3); margin-top: 5px; }
+
+/* ── PIPELINE STAGES (Greenhouse) ── */
+.pipeline {
+  display: flex; border: 1px solid var(--border);
+  border-radius: 8px; overflow: hidden; margin-bottom: 22px;
+  background: var(--white);
+}
+.stage {
+  flex: 1; padding: 14px 16px; text-align: center;
+  border-right: 1px solid var(--border); cursor: pointer;
+  transition: background .15s;
+}
+.stage:last-child { border-right: none; }
+.stage:hover { background: var(--surface2); }
+.stage.active-stage { background: #000000; border-bottom: 3px solid #000000; }
+.stage-name  { font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: .5px; }
+.stage-count { font-size: 22px; font-weight: 700; color: var(--text); margin-top: 4px; }
+.stage.active-stage .stage-name  { color: #aaaaaa; }
+.stage.active-stage .stage-count { color: #ffffff; }
+
+/* ── TABLE ── */
+.gh-table { width: 100%; border-collapse: collapse; }
+.gh-table thead tr { border-bottom: 2px solid var(--border); }
+.gh-table th {
+  padding: 12px 16px; text-align: left;
+  font-size: 11.5px; font-weight: 700; color: var(--text3);
+  letter-spacing: .5px; text-transform: uppercase; white-space: nowrap;
+  background: var(--surface2);
+}
+.gh-table td {
+  padding: 13px 16px; border-bottom: 1px solid var(--border);
+  vertical-align: middle; font-size: 14px;
+}
+.gh-table tbody tr { cursor: pointer; transition: background .12s; }
+.gh-table tbody tr:hover td { background: #f5f5f5; }
+.gh-table tbody tr:last-child td { border-bottom: none; }
+.best  { color: var(--green) !important; font-weight: 700; }
+.worst { color: var(--red)   !important; }
+
+/* ── SCORES ── */
+.score-pill {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 4px 10px; border-radius: 5px;
+  font-size: 13px; font-weight: 700;
+}
+.score-hi  { background: rgba(26,158,90,.1);  color: var(--green); border: 1px solid rgba(26,158,90,.2); }
+.score-mid { background: rgba(217,119,6,.1);   color: var(--amber); border: 1px solid rgba(217,119,6,.2); }
+.score-lo  { background: rgba(217,48,37,.1);   color: var(--red);   border: 1px solid rgba(217,48,37,.2); }
+
+/* ── BADGES ── */
+.badge {
+  display: inline-flex; align-items: center; gap: 3px;
+  padding: 3px 9px; border-radius: 4px;
+  font-size: 12px; font-weight: 600;
+}
+.badge-green  { background: var(--green-dim); color: var(--green); border: 1px solid rgba(26,158,90,.2); }
+.badge-amber  { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(217,119,6,.2); }
+.badge-red    { background: var(--red-dim);   color: var(--red);   border: 1px solid rgba(217,48,37,.2); }
+.badge-blue   { background: var(--blue-dim);  color: var(--blue);  border: 1px solid rgba(26,111,224,.2); }
+.badge-purple { background: rgba(124,58,237,.1); color: var(--purple); border: 1px solid rgba(124,58,237,.2); }
+.badge-gray   { background: #f0f0f0; color: var(--text3); border: 1px solid var(--border); }
+.badge-yellow { background: #000000; color: #ffffff; border: 1px solid #000000; }
+
+/* ── PROGRESS BAR ── */
+.prog { background: #eee; border-radius: 3px; height: 5px; overflow: hidden; }
+.prog-fill { height: 100%; border-radius: 3px; transition: width .4s; }
+
+/* ── AVATAR ── */
+.av {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: linear-gradient(135deg, #2d2d2d, #555);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 13px; color: #fff; flex-shrink: 0;
+}
+
+/* ── STAT CARDS ── */
+.stat { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+.stat-val { font-size: 30px; font-weight: 700; letter-spacing: -1px; color: var(--text); }
+.stat-lbl { font-size: 13px; color: var(--text3); margin-top: 5px; }
+
+/* ── SECTION HEADER ── */
+.sec-hdr { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; gap: 12px; flex-wrap: wrap; }
+.sec-title { font-size: 20px; font-weight: 700; color: var(--text); letter-spacing: -.3px; }
+.sec-sub   { font-size: 13px; color: var(--text3); margin-top: 3px; }
+.sec-acts  { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+/* ── SPLIT LAYOUT ── */
+.split { display: grid; grid-template-columns: 380px 1fr; gap: 20px; }
+
+/* ── RUBRIC ROW ── */
+.r-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 0; border-bottom: 1px solid var(--border);
+}
+.r-row:last-child { border-bottom: none; }
+.r-lbl { flex: 1; font-size: 14px; color: var(--text); }
+.r-lbl small { display: block; font-size: 12px; color: var(--text3); margin-top: 2px; }
+.r-val { width: 38px; text-align: right; font-size: 16px; font-weight: 700; color: var(--text); }
+
+/* ── MODAL ── */
+.modal-bg {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.55); z-index: 200;
+  align-items: center; justify-content: center;
+  padding: 20px; backdrop-filter: blur(3px);
+}
+.modal-bg.open { display: flex; }
+.modal {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; width: 100%; max-width: 740px;
+  max-height: 88vh; overflow-y: auto;
+  animation: fadeIn .18s ease;
+  box-shadow: 0 20px 60px rgba(0,0,0,.15);
+}
+.modal-hdr {
+  padding: 20px 24px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; background: var(--white); z-index: 1;
+}
+.modal-title { font-size: 17px; font-weight: 700; color: var(--text); }
+.modal-body  { padding: 24px; }
+.modal-close {
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text3); cursor: pointer; width: 30px; height: 30px;
+  border-radius: 6px; font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+}
+.modal-close:hover { color: var(--text); }
+
+/* ── QUESTION CARD ── */
+.q-card {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 18px; margin-bottom: 12px;
+}
+.q-meta { display: flex; align-items: center; gap: 7px; margin-bottom: 10px; flex-wrap: wrap; }
+.q-num  { background: #e8e8e8; color: var(--text3); font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
+.q-text { font-size: 15px; color: var(--text); line-height: 1.65; }
+.q-eval { font-size: 13px; color: var(--text3); margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); line-height: 1.6; }
+
+/* ── INFO ROW ── */
+.info-row { display: flex; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.info-row:last-child { border-bottom: none; }
+.info-key { width: 140px; font-size: 12px; font-weight: 700; color: var(--text3); flex-shrink: 0; text-transform: uppercase; letter-spacing: .3px; }
+.info-val { font-size: 14.5px; color: var(--text); }
+
+/* ── DIVIDER ── */
+.div { height: 1px; background: var(--border); margin: 18px 0; }
+
+/* ── TOAST ── */
+.toast {
+  position: fixed; bottom: 24px; right: 24px;
+  padding: 12px 20px; border-radius: 7px; font-size: 14px; font-weight: 500;
+  z-index: 999; transform: translateY(60px); opacity: 0;
+  transition: all .25s cubic-bezier(.4,0,.2,1);
+  background: var(--white); border: 1.5px solid;
+  box-shadow: 0 4px 20px rgba(0,0,0,.12);
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast.ok  { border-color: var(--green); color: var(--green); }
+.toast.err { border-color: var(--red);   color: var(--red); }
+
+/* ── EMPTY STATE ── */
+.empty { text-align: center; padding: 64px 20px; }
+.empty-ico { font-size: 40px; opacity: .25; margin-bottom: 14px; }
+.empty-txt { font-size: 14.5px; color: var(--text3); }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+input[type=range]    { accent-color: #000000; cursor: pointer; }
+input[type=checkbox] { accent-color: var(--text); width: 15px; height: 15px; cursor: pointer; }
+
+/* ── TOUCH / TAP FIX ── */
+button, .nav-item, .katch-scale-row, .stage, a {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation; /* prevents 300ms tap delay on mobile */
+}
+* { -webkit-text-size-adjust: 100%; } /* prevent iOS font scaling */
+
+/* ── IN-APP BROWSER BANNER ── */
+#iab-banner {
+  display: none;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 99999;
+  background: #000; color: #fff;
+  padding: 14px 18px;
+  font-size: 13.5px; line-height: 1.5;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,.4);
+}
+#iab-banner strong { display: block; font-size: 15px; margin-bottom: 4px; }
+#iab-banner button {
+  margin-top: 10px; padding: 9px 22px;
+  background: #fff; color: #000;
+  border: none; border-radius: 6px;
+  font-size: 13px; font-weight: 700; cursor: pointer;
+}
+
+/* ── MOBILE BOTTOM NAV ── */
+#mobile-nav {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+  background: #000;
+  border-top: 1px solid #222;
+  height: 58px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+#mobile-nav button {
+  display: inline-flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 2px;
+  padding: 0 14px; height: 58px;
+  border: none; background: none; cursor: pointer;
+  color: #666; font-size: 10px; font-weight: 600;
+  min-width: 64px; white-space: nowrap;
+}
+#mobile-nav button.active { color: #fff; }
+#mobile-nav button .mn-icon { font-size: 18px; line-height: 1; }
+
+/* ── MOBILE TOPBAR MENU BUTTON ── */
+#mob-menu-btn {
+  display: none;
+  background: none; border: none;
+  font-size: 22px; cursor: pointer;
+  padding: 0 10px 0 0; color: var(--text);
+}
+
+/* ── MOBILE SIDEBAR OVERLAY ── */
+#sidebar-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.5); z-index: 299;
+}
+.sidebar.mobile-open {
+  display: flex !important;
+  position: fixed; top: 0; left: 0; z-index: 300;
+  height: 100vh; box-shadow: 4px 0 24px rgba(0,0,0,.4);
+  animation: slideInLeft .2s ease;
+}
+@keyframes slideInLeft { from{transform:translateX(-100%)} to{transform:translateX(0)} }
+
+/* ── RESPONSIVE BREAKPOINTS ── */
+@media (max-width: 900px) {
+  body { flex-direction: column; }
+  .sidebar { display: none; }
+  .main { width: 100%; }
+  .topbar { padding: 0 14px; height: 52px; }
+  .topbar-title { font-size: 15px; }
+  .page-content { padding: 14px 12px 80px; } /* bottom pad for mobile nav */
+  #mob-menu-btn { display: block; }
+  #mobile-nav { display: block; }
+
+  /* flatten all grids on mobile */
+  .g2, .g3, .g4, .f-row, .split { grid-template-columns: 1fr !important; }
+
+  /* make buttons bigger for touch */
+  .btn { min-height: 44px; }
+  .btn-sm { min-height: 38px; }
+  .nav-item { min-height: 44px; }
+  .f-input, .f-select, .f-textarea { font-size: 16px !important; } /* prevent iOS zoom */
+
+  /* pipeline stages scroll horizontally */
+  .pipeline { overflow-x: auto; }
+  .stage { min-width: 90px; }
+
+  /* katch scale grid stacked on mobile */
+  .katch-scale-row > div { grid-template-columns: 50px 80px 1fr !important; }
+
+  /* sec header stack */
+  .sec-hdr { flex-direction: column; align-items: flex-start; gap: 10px; }
+
+  /* cards full width */
+  .card, .card-sm { padding: 14px; }
+}
+
+@media (max-width: 480px) {
+  .topbar-title { font-size: 13px; }
+  .page-content { padding: 12px 10px 80px; }
+  .card, .card-sm { padding: 12px; }
+  #mobile-nav button { padding: 0 10px; min-width: 52px; }
+}
+</style>
+</head>
+<body>
+
+<!-- IN-APP BROWSER BANNER -->
+<div id="iab-banner">
+  <strong>⚠️ Open in your browser for full functionality</strong>
+  WhatsApp / Lark's built-in browser blocks some features. Tap below to open properly.
+  <br>
+  <button onclick="window.open(window.location.href,'_blank')">Open in Browser ↗</button>
+  <button onclick="document.getElementById('iab-banner').style.display='none'" style="background:transparent;color:#aaa;border:1px solid #444;margin-left:8px;">Dismiss</button>
+</div>
+
+<!-- MOBILE BOTTOM NAV -->
+<nav id="mobile-nav">
+  <button onclick="goView('upload')" class="active"><span class="mn-icon">+</span>Upload</button>
+  <button onclick="goView('candidates')"><span class="mn-icon">≡</span>Candidates</button>
+  <button onclick="goView('interview')"><span class="mn-icon">?</span>Questions</button>
+  <button onclick="goView('katch')"><span class="mn-icon">K</span>KATCH</button>
+  <button onclick="goView('sourcing')"><span class="mn-icon">⌖</span>Sourcing</button>
+  <button onclick="goView('dashboard')"><span class="mn-icon">◈</span>Dashboard</button>
+</nav>
+
+<!-- SIDEBAR OVERLAY (mobile) -->
+<div id="sidebar-overlay" onclick="closeMobileSidebar()"></div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-icon">OKX</div>
+    <div>
+      <div class="logo-name">OKX Hiring</div>
+      <div class="logo-tag">TA Platform · Beta</div>
+    </div>
+  </div>
+
+  <div class="sidebar-section">Recruiting</div>
+  <button class="nav-item active" data-view="upload">
+    <span class="nav-icon">+</span> Upload CVs
+  </button>
+  <button class="nav-item" data-view="candidates">
+    <span class="nav-icon">≡</span> All Candidates
+    <span class="nav-badge" id="nb-candidates">0</span>
+  </button>
+  <button class="nav-item" data-view="compare">
+    <span class="nav-icon">↔</span> Compare
+    <span class="nav-badge" id="nb-compare">0</span>
+  </button>
+
+  <div class="sidebar-section">Interviews</div>
+  <button class="nav-item" data-view="interview">
+    <span class="nav-icon">?</span> Question Bank
+  </button>
+  <button class="nav-item" data-view="rubric">
+    <span class="nav-icon">★</span> AI Rubric
+  </button>
+
+  <div class="sidebar-section">Assessment</div>
+  <button class="nav-item" data-view="katch">
+    <span class="nav-icon">K</span> KATCH Scorecard
+  </button>
+
+  <div class="sidebar-section">Sourcing</div>
+  <button class="nav-item" data-view="sourcing">
+    <span class="nav-icon">⌖</span> Sourcing Copilot
+  </button>
+
+  <div class="sidebar-section">Analytics</div>
+  <button class="nav-item" data-view="dashboard">
+    <span class="nav-icon">◈</span> Dashboard
+  </button>
+
+  <div class="sidebar-footer">
+    <div class="sidebar-role">TA Partner</div>
+    <div class="sidebar-user">Louisa Lo</div>
+    <button onclick="openShareModal()" style="margin-top: 10px; width: 100%; padding: 7px 0px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; color: rgb(255, 255, 255); font-size: 12px; font-weight: 600; cursor: pointer; letter-spacing: 0.3px; transition: background 0.15s;" onmouseenter="this.style.background='rgba(255,255,255,0.16)'" onmouseleave="this.style.background='rgba(255,255,255,0.08)'">↗ Share Tool</button>
+  </div>
+</aside>
+
+<!-- SHARE MODAL -->
+<div id="share-modal" style="display: flex; position: fixed; inset: 0px; background: rgba(0, 0, 0, 0.5); z-index: 9999; align-items: center; justify-content: center;">
+  <div style="background:#fff;border-radius:14px;width:min(520px,94vw);max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);">
+    <!-- Header -->
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:20px 24px 0;">
+      <div>
+        <div style="font-weight:800;font-size:17px;">Share this tool</div>
+        <div style="font-size:12.5px;color:#666;margin-top:2px;">Send to your team via Lark or WhatsApp</div>
+      </div>
+      <button onclick="closeShareModal()" style="background:none;border:none;font-size:22px;cursor:pointer;color:#666;line-height:1;">×</button>
+    </div>
+
+    <div style="padding:20px 24px;display:flex;flex-direction:column;gap:16px;">
+
+      <!-- Option 1: Download -->
+      <div style="border:1px solid #e8e8e8;border-radius:10px;padding:16px;">
+        <div style="font-weight:700;font-size:13.5px;margin-bottom:4px;">1 — Download the file</div>
+        <div style="font-size:12px;color:#666;margin-bottom:12px;">Save the HTML file, then send it directly in Lark or WhatsApp. Recipients open it in any browser — no install needed.</div>
+        <button onclick="shareDownload()" style="width:100%;padding:9px;background:#000;color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;">⬇ Download OKX TA Hiring Tool</button>
+      </div>
+
+      <!-- Option 2: Lark message -->
+      <div style="border:1px solid #e8e8e8;border-radius:10px;padding:16px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+          <div style="font-weight:700;font-size:13.5px;">2 — Copy Lark message</div>
+          <span style="font-size:10.5px;background:#1a7a45;color:#fff;padding:2px 7px;border-radius:10px;">Lark</span>
+        </div>
+        <div style="font-size:12px;color:#666;margin-bottom:12px;">Copy a ready-made Lark message — attach the downloaded file alongside it.</div>
+        <pre id="lark-msg" style="font-size:12px;line-height:1.65;background:#f7f7f7;border:1px solid #e8e8e8;border-radius:7px;padding:12px;white-space:pre-wrap;color:#333;font-family:inherit;margin-bottom:10px;">👋 Hey team! Sharing our OKX TA Hiring Platform — a single-file tool built to speed up our screening and sourcing workflow.
+
+✅ CV screening with AI + KATCH scoring
+✅ Interview question generator (Eng / PM / General)
+✅ Sourcing Copilot — Boolean strings, target companies &amp; InMail drafts
+✅ Pipeline dashboard
+
+📎 File attached — just open in any browser, no install needed.
+
+Built for OKX TA. Questions? Ping me here 🙂</pre>
+        <button onclick="copyShareMsg('lark-msg', this)" style="width:100%;padding:8px;background:#f0f0f0;color:#000;border:none;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;">Copy Lark Message</button>
+      </div>
+
+      <!-- Option 3: WhatsApp message -->
+      <div style="border:1px solid #e8e8e8;border-radius:10px;padding:16px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+          <div style="font-weight:700;font-size:13.5px;">3 — Copy WhatsApp message</div>
+          <span style="font-size:10.5px;background:#25d366;color:#fff;padding:2px 7px;border-radius:10px;">WhatsApp</span>
+        </div>
+        <div style="font-size:12px;color:#666;margin-bottom:12px;">Copy a shorter message for WhatsApp — send the file as an attachment alongside it.</div>
+        <pre id="wa-msg" style="font-size:12px;line-height:1.65;background:#f7f7f7;border:1px solid #e8e8e8;border-radius:7px;padding:12px;white-space:pre-wrap;color:#333;font-family:inherit;margin-bottom:10px;">Hey! Sharing the OKX TA Hiring Tool 🚀
+
+It's a single HTML file — open in browser, no setup needed. Covers CV screening, KATCH scoring, interview packs and sourcing.
+
+File attached 👆 Let me know if you have questions!</pre>
+        <button onclick="copyShareMsg('wa-msg', this)" style="width:100%;padding:8px;background:#f0f0f0;color:#000;border:none;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;">Copy WhatsApp Message</button>
+      </div>
+
+      <!-- Tip -->
+      <div style="padding:11px 14px;background:#fffbe6;border:1px solid #ffe58f;border-radius:8px;font-size:12px;color:#7a5800;">
+        <strong>💡 Pro tip:</strong> In Lark, you can pin the HTML file in a group chat so everyone always has the latest version. In WhatsApp, drop it into your TA group and pin the message.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <button id="mob-menu-btn" onclick="openMobileSidebar()" aria-label="Menu">☰</button>
+    <div class="topbar-left">
+      <div class="topbar-bc" id="breadcrumb">OKX Hiring <span class="topbar-sep">›</span> Upload CVs</div>
+      <div class="topbar-title" id="topbar-title">Upload CVs &amp; Job Description</div>
+    </div>
+    <div class="topbar-actions" id="topbar-actions">
+      <button class="btn btn-primary btn-sm" onclick="runScreen()">Run AI Screening</button>
+    </div>
+  </div>
+
+  <div class="page-content">
+
+    <!-- VIEW: UPLOAD -->
+    <div class="view active" id="view-upload">
+      <div class="split">
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div class="card">
+            <div class="panel-title">Job Description</div>
+            <div class="f-group" style="background:rgba(0,80,179,.04);border:1px solid rgba(0,80,179,.15);border-radius:7px;padding:12px 14px;margin-bottom:14px;">
+              <label class="f-label" style="color:var(--blue);">Greenhouse Job Link (optional)</label>
+              <div style="display:flex;gap:8px;align-items:center;">
+                <input class="f-input" id="gh-link" placeholder="https://app.greenhouse.io/sdash/..." style="margin-bottom:0;flex:1;" oninput="tryParseGH(this.value)">
+                <button class="btn btn-secondary btn-sm" onclick="tryParseGH(document.getElementById('gh-link').value)" style="flex-shrink:0;">Import</button>
+              </div>
+              <div style="font-size:12px;color:var(--text3);margin-top:6px;">Paste a Greenhouse job URL to auto-fill role title, team and level. Full API integration requires Greenhouse API key — contact your TA Ops team.</div>
+            </div>
+            <div class="f-group">
+              <label class="f-label">Role Title</label>
+              <input class="f-input" id="jd-title" placeholder="e.g. Senior PM – Web3 Growth">
+            </div>
+            <div class="f-row">
+              <div class="f-group" style="margin-bottom:0;">
+                <label class="f-label">Team</label>
+                <select class="f-select" id="jd-team">
+                  <option value="">Select team...</option>
+                  <option>Technology / Engineering</option>
+                  <option>Product Management</option>
+                  <option>Growth &amp; Marketing</option>
+                  <option>Data Science / Analytics</option>
+                  <option>Compliance &amp; Legal</option>
+                  <option>Finance &amp; Strategy</option>
+                  <option>Business Development</option>
+                  <option>Operations</option>
+                  <option>People &amp; HR</option>
+                  <option>Design / UX</option>
+                </select>
+              </div>
+              <div class="f-group" style="margin-bottom:0;">
+                <label class="f-label">P-Level</label>
+                <select class="f-select" id="jd-level">
+                  <option>P5 – Senior IC</option>
+                  <option>P6 – Staff / Lead IC</option>
+                  <option>P7 – Principal / Sr. Manager</option>
+                  <option>P8 – Director / Sr. Principal</option>
+                  <option>P9+ – VP / Distinguished</option>
+                </select>
+              </div>
+            </div>
+            <div style="margin-top:14px;"></div>
+            <div class="f-group">
+              <label class="f-label">Full Job Description</label>
+              <textarea class="f-textarea" id="jd-text" placeholder="Paste the full JD here..."></textarea>
+            </div>
+            <div class="f-group">
+              <label class="f-label">Must-Have Keywords (comma separated)</label>
+              <input class="f-input" id="jd-keywords" placeholder="e.g. DeFi, Web3, SQL, AI tools">
+            </div>
+          </div>
+
+          <div class="card-sm">
+            <div class="panel-title">Quick JD Templates</div>
+            <div style="display:flex;flex-direction:column;gap:7px;">
+              <button class="btn btn-ghost btn-sm" onclick="loadT('pm')" style="justify-content:flex-start;">Senior PM – Web3 / DeFi</button>
+              <button class="btn btn-ghost btn-sm" onclick="loadT('eng')" style="justify-content:flex-start;">Staff Engineer – Backend</button>
+              <button class="btn btn-ghost btn-sm" onclick="loadT('data')" style="justify-content:flex-start;">Principal Data Scientist</button>
+              <button class="btn btn-ghost btn-sm" onclick="loadT('biz')" style="justify-content:flex-start;">Director – Business Development</button>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card" style="margin-bottom:16px;">
+            <div class="panel-title">CV Files</div>
+            <div class="upload-zone" id="drop-zone">
+              <input type="file" id="cv-input" accept=".pdf,.doc,.docx,.txt" multiple="">
+              <div class="upload-icon">↑</div>
+              <div class="upload-title">Drop CVs here or click to browse</div>
+              <div class="upload-sub">PDF · DOC · DOCX · TXT &nbsp;·&nbsp; Batch upload supported</div>
+            </div>
+            <div id="file-list" style="margin-top:14px;"></div>
+            <button class="btn btn-primary" onclick="runScreen()" style="width:100%;margin-top:14px;justify-content:center;">Run AI Screening</button>
+          </div>
+
+          <div class="card-sm">
+            <div class="panel-title">What the Screener Looks At</div>
+
+            <!-- Role Fit — always visible -->
+            <div onclick="toggleSection('s-rolefit')" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:7px 0;border-bottom:1px solid var(--border);margin-bottom:6px;">
+              <span style="font-size:12px;font-weight:700;color:var(--text3);letter-spacing:.7px;text-transform:uppercase;">Role Fit</span>
+              <span style="font-size:11px;color:var(--text3);display:flex;gap:8px;align-items:center;">
+                <span style="font-weight:500;color:var(--text2);">JD · Seniority · Domain · Trajectory</span>
+                <span id="arr-rolefit" style="font-size:10px;">▼</span>
+              </span>
+            </div>
+            <div id="s-rolefit" style="display:none;display:flex;flex-direction:column;gap:6px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border);">
+              <div style="display:flex;align-items:flex-start;gap:9px;font-size:13px;">
+                <span style="width:16px;height:16px;background:#000;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0;color:#fff;margin-top:1px;">✓</span>
+                <span><strong>JD match</strong> — keyword alignment and must-have coverage</span>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:9px;font-size:13px;">
+                <span style="width:16px;height:16px;background:#000;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0;color:#fff;margin-top:1px;">✓</span>
+                <span><strong>Seniority fit</strong> — experience vs. P-level expectation</span>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:9px;font-size:13px;">
+                <span style="width:16px;height:16px;background:#000;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0;color:#fff;margin-top:1px;">✓</span>
+                <span><strong>Domain background</strong> — industry, function, and company relevance</span>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:9px;font-size:13px;">
+                <span style="width:16px;height:16px;background:#000;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0;color:#fff;margin-top:1px;">✓</span>
+                <span><strong>Career trajectory</strong> — growth pattern and progression</span>
+              </div>
+            </div>
+
+            <!-- KATCH -->
+            <div onclick="toggleSection('s-katch')" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:7px 0;border-bottom:1px solid var(--border);margin-bottom:6px;">
+              <span style="font-size:12px;font-weight:700;color:var(--blue);letter-spacing:.7px;text-transform:uppercase;">KATCH</span>
+              <span style="font-size:11px;color:var(--text3);display:flex;gap:6px;align-items:center;">
+                <span style="font-weight:500;color:var(--blue);letter-spacing:.5px;">K · A · T · C · H</span>
+                <span id="arr-katch" style="font-size:10px;">▼</span>
+              </span>
+            </div>
+            <div id="s-katch" style="display:none;flex-direction:column;gap:6px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border);">
+              <div style="display:flex;align-items:center;gap:9px;font-size:13px;">
+                <span style="width:16px;height:16px;background:var(--blue);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0;color:#fff;">K</span>
+                <span><strong>Knowledge</strong> — expertise and execution track record</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:9px;font-size:13px;">
+                <span style="width:16px;height:16px;background:var(--blue);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0;color:#fff;">A</span>
+                <span><strong>Acumen</strong> — business and market awareness</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:9px;font-size:13px;">
+                <span style="width:16px;height:16px;background:var(--blue);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0;color:#fff;">T</span>
+                <span><strong>Teamwork</strong> — collaboration and leadership signals</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:9px;font-size:13px;">
+                <span style="width:16px;height:16px;background:var(--blue);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0;color:#fff;">C</span>
+                <span><strong>Cognition</strong> — judgment and problem-solving depth</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:9px;font-size:13px;">
+                <span style="width:16px;height:16px;background:var(--blue);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0;color:#fff;">H</span>
+                <span><strong>Hunger</strong> — drive, initiative, and resilience</span>
+              </div>
+            </div>
+
+            <!-- AI Capability -->
+            <div onclick="toggleSection('s-ai')" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:7px 0;margin-bottom:6px;">
+              <span style="font-size:12px;font-weight:700;color:var(--purple);letter-spacing:.7px;text-transform:uppercase;">AI Capability</span>
+              <span style="font-size:11px;color:var(--text3);display:flex;gap:6px;align-items:center;">
+                <span style="font-weight:500;color:var(--purple);">Tool Use · Impact · Mindset</span>
+                <span id="arr-ai" style="font-size:10px;">▼</span>
+              </span>
+            </div>
+            <div id="s-ai" style="display:none;flex-direction:column;gap:6px;margin-bottom:10px;">
+              <div style="display:flex;align-items:center;gap:9px;font-size:13px;">
+                <span style="width:16px;height:16px;background:var(--purple);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;flex-shrink:0;color:#fff;">AI</span>
+                <span>Active use of AI tools in daily workflow</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:9px;font-size:13px;">
+                <span style="width:16px;height:16px;background:var(--purple);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;flex-shrink:0;color:#fff;">AI</span>
+                <span>Measurable impact delivered through AI</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:9px;font-size:13px;">
+                <span style="width:16px;height:16px;background:var(--purple);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;flex-shrink:0;color:#fff;">AI</span>
+                <span>Curiosity, adaptability, and self-learning mindset</span>
+              </div>
+            </div>
+
+            <div style="padding:9px 11px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--text3);line-height:1.6;">
+              <strong style="color:var(--text);">Score:</strong> JD Match 50% · AI Score 30% · KATCH 20%
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW: CANDIDATES -->
+    <div class="view" id="view-candidates">
+      <div class="pipeline" id="pipeline">
+        <div class="stage active-stage" data-stage="all" onclick="filterStage('all')">
+          <div class="stage-name">All</div>
+          <div class="stage-count" id="s-all">0</div>
+        </div>
+        <div class="stage" data-stage="strong" onclick="filterStage('strong')">
+          <div class="stage-name">Strong Match</div>
+          <div class="stage-count" id="s-strong">0</div>
+        </div>
+        <div class="stage" data-stage="moderate" onclick="filterStage('moderate')">
+          <div class="stage-name">Moderate</div>
+          <div class="stage-count" id="s-moderate">0</div>
+        </div>
+        <div class="stage" data-stage="weak" onclick="filterStage('weak')">
+          <div class="stage-name">Needs Review</div>
+          <div class="stage-count" id="s-weak">0</div>
+        </div>
+        <div class="stage" data-stage="ai-native" onclick="filterStage('ai-native')">
+          <div class="stage-name">AI Native</div>
+          <div class="stage-count" id="s-ainative">0</div>
+        </div>
+      </div>
+
+      <div class="sec-hdr">
+        <div>
+          <div class="sec-title" id="cand-title">All Candidates</div>
+          <div class="sec-sub" id="cand-sub">AI-ranked against your job description</div>
+        </div>
+        <div class="sec-acts">
+          <input class="f-input" id="search-box" placeholder="Search name or company..." style="width:210px;padding:8px 12px;font-size:13.5px;" oninput="renderTable()">
+          <button class="btn btn-secondary btn-sm" onclick="goView('compare')">Compare Selected</button>
+          <button class="btn btn-ghost btn-sm" onclick="exportCSV()">Export CSV</button>
+        </div>
+      </div>
+
+      <div class="card" style="padding:0;overflow:auto;">
+        <table class="gh-table" id="cand-table">
+          <thead>
+            <tr>
+              <th style="width:40px;"><input type="checkbox" id="chk-all" onchange="toggleAll(this)"></th>
+              <th>Candidate</th>
+              <th>Current Role</th>
+              <th onclick="sortBy('overall',event)" style="cursor:pointer;">Overall <span class="sort-arrow" data-col="overall">▼</span></th>
+              <th onclick="sortBy('jdMatch',event)" style="cursor:pointer;">JD Match <span class="sort-arrow" data-col="jdMatch">↕</span></th>
+              <th onclick="sortBy('aiScore',event)" style="cursor:pointer;">AI Score <span class="sort-arrow" data-col="aiScore">↕</span></th>
+              <th onclick="sortBy('katchScore',event)" style="cursor:pointer;">KATCH <span class="sort-arrow" data-col="katchScore">↕</span></th>
+              <th>AI Breakdown</th>
+              <th onclick="sortBy('yoe',event)" style="cursor:pointer;">Exp <span class="sort-arrow" data-col="yoe">↕</span></th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="cand-tbody">
+            <tr><td colspan="10"><div class="empty"><div class="empty-ico">◈</div><div class="empty-txt">Upload CVs and run AI screening to see results</div></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- VIEW: COMPARE -->
+    <div class="view" id="view-compare">
+      <div class="sec-hdr">
+        <div>
+          <div class="sec-title">Side-by-Side Comparison</div>
+          <div class="sec-sub">Select 2–5 candidates in the Candidates view to compare</div>
+        </div>
+        <button class="btn btn-ghost btn-sm" onclick="exportCSV()">Export CSV</button>
+      </div>
+      <div id="compare-body">
+        <div class="empty"><div class="empty-ico">↔</div><div class="empty-txt">Select candidates in the Candidates tab first</div></div>
+      </div>
+    </div>
+
+    <!-- VIEW: INTERVIEW -->
+    <div class="view" id="view-interview">
+      <div class="sec-hdr">
+        <div>
+          <div class="sec-title">Interview Question Generator</div>
+          <div class="sec-sub">Tailored questions per candidate, team, and P-level — with evaluation standards</div>
+        </div>
+      </div>
+      <div class="g2">
+        <div class="card">
+          <div class="panel-title">Configuration</div>
+          <div class="f-group">
+            <label class="f-label">Department / Role Type</label>
+            <select class="f-select" id="q-dept" onchange="onDeptChange()">
+              <option value="general">General (All Roles)</option>
+              <option value="eng_backend">Engineering — Backend / Infrastructure</option>
+              <option value="eng_frontend">Engineering — Frontend / Mobile</option>
+              <option value="eng_data">Engineering — Data / ML / AI</option>
+              <option value="pm">Product Management</option>
+              <option value="design">Design / UX</option>
+              <option value="bd">Business Development / Growth</option>
+              <option value="compliance">Compliance / Legal</option>
+            </select>
+          </div>
+          <div class="f-group">
+            <label class="f-label">Candidate (optional)</label>
+            <select class="f-select" id="q-cand"><option value="">General / No specific candidate</option></select>
+          </div>
+          <div class="f-group">
+            <label class="f-label">Interview Stage</label>
+            <select class="f-select" id="q-stage">
+              <option>Recruiter Screen (15–20 min)</option>
+              <option>Hiring Manager Round (45–60 min)</option>
+              <option>Technical Deep-Dive (60 min)</option>
+              <option>Cross-Functional / Culture (45 min)</option>
+              <option>Final / Executive Round (30 min)</option>
+            </select>
+          </div>
+          <div class="f-group">
+            <label class="f-label">Focus Areas</label>
+            <div style="display:flex;flex-direction:column;gap:9px;margin-top:4px;">
+              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-ai"> AI Nativeness &amp; Tool Usage</label>
+              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-tech"> Technical / Domain Depth</label>
+              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-lead"> Leadership &amp; Strategy</label>
+              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-culture"> OKX Culture &amp; Values</label>
+              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" id="f-crypto"> Crypto / Web3 Specific</label>
+              <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border);font-size:12px;font-weight:700;color:var(--blue);letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">KATCH Competencies</div>
+              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-kK"> K — Knowledge</label>
+              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-kA"> A — Acumen</label>
+              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-kT"> T — Teamwork</label>
+              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-kC"> C — Cognition</label>
+              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-kH"> H — Hunger</label>
+
+              <div id="eng-focus-group" style="display:none;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);">
+                <div style="font-size:12px;font-weight:700;color:var(--green);letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">Engineering AI Dimensions</div>
+                <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-eng1"> Dim 1 — AI Tool Knowledge &amp; Trends</label>
+                <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-eng2"> Dim 2 — Claude Code / Prompt Engineering</label>
+                <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-eng3"> Dim 3 — AI-Assisted Engineering Practices</label>
+                <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-eng4"> Dim 4 — AI Safety &amp; Engineering Ethics</label>
+                <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" id="f-eng5"> Dim 5 — Team AI Leadership (TL/P7+)</label>
+                <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" id="f-eng6"> Dim 6 — Backend Core &amp; AI Integration</label>
+              </div>
+
+              <div id="pm-focus-group" style="display:none;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);">
+                <div style="font-size:12px;font-weight:700;color:var(--purple);letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">PM AI Dimensions</div>
+                <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-pm1"> AI Product Strategy &amp; Vision</label>
+                <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-pm2"> AI Tool Usage in PM Workflow</label>
+                <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-pm3"> AI Judgment, Safety &amp; Risk</label>
+                <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" id="f-pm4"> PM AI Leadership (Staff+)</label>
+              </div>
+            </div>
+          </div>
+          <div class="f-row">
+            <div class="f-group">
+              <label class="f-label">No. of Questions</label>
+              <select class="f-select" id="q-count"><option>5</option><option selected="">10</option><option>15</option><option>20</option></select>
+            </div>
+            <div class="f-group">
+              <label class="f-label">P-Level Context</label>
+              <select class="f-select" id="q-plevel">
+                <option>P5 – Senior IC</option>
+                <option selected="">P6–P7 – Staff / Principal</option>
+                <option>P8+ – Director+</option>
+              </select>
+            </div>
+          </div>
+          <div class="f-group">
+            <label class="f-label">Custom Probe Notes</label>
+            <textarea class="f-textarea" id="q-notes" style="min-height:72px;" placeholder="Gaps or specific areas to probe for this candidate..."></textarea>
+          </div>
+          <button class="btn btn-primary" onclick="genQuestions()" style="width:100%;justify-content:center;">Generate Questions</button>
+        </div>
+
+        <div class="card-sm">
+          <div class="panel-title">Scorecard Guide</div>
+          <div style="font-size:13.5px;color:var(--text3);margin-bottom:16px;line-height:1.6;">Score each answer 1–5. AI dimensions are weighted 2× for Staff+ roles. For Engineering roles, Dim 2 (Hands-On) is a required dimension at all levels.</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div>
+              <span class="badge badge-green" style="font-size:13px;padding:4px 10px;">Strong Yes — Exceptional</span>
+              <div style="font-size:13.5px;color:var(--text3);margin-top:5px;">Pioneers AI use, concrete examples, ships AI-powered work, promotes best practices.</div>
+            </div>
+            <div>
+              <span class="badge badge-blue" style="font-size:13px;padding:4px 10px;">Yes — Proficient</span>
+              <div style="font-size:13.5px;color:var(--text3);margin-top:5px;">Consistent AI usage with measurable outcomes, adopts tools quickly, solid hands-on.</div>
+            </div>
+            <div>
+              <span class="badge badge-amber" style="font-size:13px;padding:4px 10px;">No — Borderline</span>
+              <div style="font-size:13.5px;color:var(--text3);margin-top:5px;">Occasional use, lacks systematic thinking, limited trend awareness. May affect leveling.</div>
+            </div>
+            <div>
+              <span class="badge badge-red" style="font-size:13px;padding:4px 10px;">Strong No — Not Recommended</span>
+              <div style="font-size:13.5px;color:var(--text3);margin-top:5px;">Rarely uses AI tools, no self-directed learning. Strong No for AI-native org.</div>
+            </div>
+          </div>
+          <div class="div"></div>
+          <div class="panel-title">Governance Principle</div>
+          <div style="font-size:13px;color:var(--text3);line-height:1.6;"><strong style="color:var(--text);">AI is a MUST</strong> at OKX — strong tech + no AI may still pass but will affect leveling. Strong AI cannot compensate for weak fundamentals.</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:18px;">
+        <div class="panel-title" id="q-panel-title">Generated Questions</div>
+        <div id="q-output">
+          <div class="empty" style="padding:40px 0;"><div class="empty-ico">?</div><div class="empty-txt">Configure above and click Generate Questions</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW: RUBRIC -->
+    <div class="view" id="view-rubric">
+      <div class="sec-hdr">
+        <div>
+          <div class="sec-title">AI Nativeness Rubric</div>
+          <div class="sec-sub">Set the importance of each AI dimension — applied during CV screening</div>
+        </div>
+      </div>
+      <div class="g2">
+        <div class="card">
+          <div class="panel-title">Dimension Weights</div>
+          <p style="font-size:14px;color:var(--text3);margin-bottom:18px;line-height:1.6;">Adjust the importance of each AI dimension for your current role. These weights inform candidate scoring and interview question prioritisation.</p>
+          <div class="r-row">
+            <div class="r-lbl">AI Tool Usage<small>Active use of ChatGPT, Copilot, Claude, etc.</small></div>
+            <input type="range" min="1" max="5" value="4" id="r-tool" style="width:90px;" oninput="updR()">
+            <div class="r-val" id="rv-tool">4</div>
+          </div>
+          <div class="r-row">
+            <div class="r-lbl">AI Mindset<small>Curiosity, self-learning, AI-first problem framing</small></div>
+            <input type="range" min="1" max="5" value="5" id="r-mindset" style="width:90px;" oninput="updR()">
+            <div class="r-val" id="rv-mindset">5</div>
+          </div>
+          <div class="r-row">
+            <div class="r-lbl">Technical Depth<small>ML, prompt engineering, RAG, fine-tuning, AI APIs</small></div>
+            <input type="range" min="1" max="5" value="3" id="r-depth" style="width:90px;" oninput="updR()">
+            <div class="r-val" id="rv-depth">3</div>
+          </div>
+          <div class="r-row">
+            <div class="r-lbl">AI-Driven Impact<small>Measurable outcomes delivered via AI in past roles</small></div>
+            <input type="range" min="1" max="5" value="4" id="r-impact" style="width:90px;" oninput="updR()">
+            <div class="r-val" id="rv-impact">4</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="panel-title">Full Scoring Definitions</div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div>
+              <div style="font-weight:700;color:var(--green);margin-bottom:4px;font-size:14px;">5 — Exemplary</div>
+              <div style="font-size:13.5px;color:var(--text3);line-height:1.6;">Actively pioneers AI use. Clear, recent, specific examples. Integrates AI into daily workflow. Has shipped AI-powered work with measurable outcomes.</div>
+            </div>
+            <div>
+              <div style="font-weight:700;color:var(--blue);margin-bottom:4px;font-size:14px;">4 — Proficient</div>
+              <div style="font-size:13.5px;color:var(--text3);line-height:1.6;">Consistent AI tool usage with measurable outcomes. Understands limitations. Adopts new tools quickly and with good judgment.</div>
+            </div>
+            <div>
+              <div style="font-weight:700;color:var(--amber);margin-bottom:4px;font-size:14px;">3 — Developing</div>
+              <div style="font-size:13.5px;color:var(--text3);line-height:1.6;">Some AI exposure. Uses tools occasionally. Curious but not yet systematic. Would benefit from structured onboarding to AI-native workflows.</div>
+            </div>
+            <div>
+              <div style="font-weight:700;color:var(--text3);margin-bottom:4px;font-size:14px;">2 — Limited</div>
+              <div style="font-size:13.5px;color:var(--text3);line-height:1.6;">Aware of AI but passive. No concrete examples in CV or experience. Unlikely to self-initiate AI adoption without strong direction.</div>
+            </div>
+            <div>
+              <div style="font-weight:700;color:var(--red);margin-bottom:4px;font-size:14px;">1 — None</div>
+              <div style="font-size:13.5px;color:var(--text3);line-height:1.6;">No evidence of AI usage, interest, or mindset. May be actively skeptical. Not a strong fit for an AI-native organisation.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW: KATCH -->
+    <div class="view" id="view-katch">
+      <div class="sec-hdr">
+        <div>
+          <div class="sec-title">KATCH Competency Scorecard</div>
+          <div class="sec-sub">OKG-wide competency framework — Knowledge · Acumen · Teamwork · Cognition · Hunger</div>
+        </div>
+      </div>
+
+      <div style="background:var(--blue-dim);border:1px solid rgba(0,80,179,.2);border-radius:8px;padding:16px 20px;margin-bottom:22px;font-size:14px;color:var(--text2);line-height:1.7;">
+        <strong style="color:var(--blue);">What is KATCH?</strong> KATCH defines <em>what great looks like</em> at OKG — a centralized competency framework guiding hiring, development, and performance. Each competency is scored 1–5 per interviewer and aggregated into an overall KATCH score used alongside JD match and AI nativeness.
+      </div>
+
+      <div class="g2" style="margin-bottom:20px;">
+        <div class="card">
+          <div class="panel-title">Candidate KATCH Scores</div>
+          <div id="katch-cand-table">
+            <div class="empty" style="padding:24px 0;"><div class="empty-ico">K</div><div class="empty-txt">Run AI Screening first to see KATCH scores</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="panel-title">Interview Panel Design</div>
+          <p style="font-size:13.5px;color:var(--text3);margin-bottom:16px;line-height:1.6;">Distribute KATCH competencies across your interview panel to ensure comprehensive, non-redundant coverage.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;" id="katch-panel-design">
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:12px 14px;">
+              <div style="font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:7px;">Recruiter Screen</div>
+              <div style="display:flex;flex-wrap:wrap;gap:5px;"><span class="badge badge-blue" style="font-size:12px;">Knowledge</span><span class="badge badge-blue" style="font-size:12px;">Acumen</span></div>
+            </div>
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:12px 14px;">
+              <div style="font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:7px;">Hiring Manager Round</div>
+              <div style="display:flex;flex-wrap:wrap;gap:5px;"><span class="badge badge-blue" style="font-size:12px;">Cognition</span><span class="badge badge-blue" style="font-size:12px;">Hunger</span></div>
+            </div>
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:12px 14px;">
+              <div style="font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:7px;">Technical Deep-Dive</div>
+              <div style="display:flex;flex-wrap:wrap;gap:5px;"><span class="badge badge-blue" style="font-size:12px;">Knowledge</span><span class="badge badge-blue" style="font-size:12px;">Cognition</span></div>
+            </div>
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:12px 14px;">
+              <div style="font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:7px;">Cross-Functional / Culture</div>
+              <div style="display:flex;flex-wrap:wrap;gap:5px;"><span class="badge badge-blue" style="font-size:12px;">Teamwork</span><span class="badge badge-blue" style="font-size:12px;">Culture Fit</span></div>
+            </div>
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:12px 14px;">
+              <div style="font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:7px;">Final / Executive Round</div>
+              <div style="display:flex;flex-wrap:wrap;gap:5px;"><span class="badge badge-blue" style="font-size:12px;">Acumen</span><span class="badge badge-blue" style="font-size:12px;">Hunger</span><span class="badge badge-blue" style="font-size:12px;">Overall</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:20px;">
+        <div class="panel-title">KATCH Competency Definitions</div>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;">
+          <div style="background:var(--surface2);border:1px solid rgba(0,80,179,.15);border-radius:8px;padding:16px;">
+            <div style="font-size:28px;font-weight:800;color:var(--blue);letter-spacing:-1px;margin-bottom:4px;">K</div>
+            <div style="font-size:14px;font-weight:700;color:var(--text);">Knowledge</div>
+            <div style="font-size:12px;color:var(--text3);margin-bottom:10px;">专业力</div>
+            <div style="font-size:12.5px;color:var(--text2);line-height:1.6;margin-bottom:10px;">Possess up-to-date expertise. Analyze problems accurately and execute effective solutions.</div>
+            <div style="font-size:11.5px;color:var(--blue);font-weight:600;">Professional Mastery · Accurate Analysis · Effective Execution</div>
+          </div>
+          <div style="background:var(--surface2);border:1px solid rgba(0,80,179,.15);border-radius:8px;padding:16px;">
+            <div style="font-size:28px;font-weight:800;color:var(--blue);letter-spacing:-1px;margin-bottom:4px;">A</div>
+            <div style="font-size:14px;font-weight:700;color:var(--text);">Acumen</div>
+            <div style="font-size:12px;color:var(--text3);margin-bottom:10px;">市场和业务理解力</div>
+            <div style="font-size:12.5px;color:var(--text2);line-height:1.6;margin-bottom:10px;">Deeply understand the business model. Transform insights into solutions to optimize the business.</div>
+            <div style="font-size:11.5px;color:var(--blue);font-weight:600;">Market Acumen · Strategic Planning · Value Creation</div>
+          </div>
+          <div style="background:var(--surface2);border:1px solid rgba(0,80,179,.15);border-radius:8px;padding:16px;">
+            <div style="font-size:28px;font-weight:800;color:var(--blue);letter-spacing:-1px;margin-bottom:4px;">T</div>
+            <div style="font-size:14px;font-weight:700;color:var(--text);">Teamwork</div>
+            <div style="font-size:12px;color:var(--text3);margin-bottom:10px;">团队</div>
+            <div style="font-size:12.5px;color:var(--text2);line-height:1.6;margin-bottom:10px;">Work effectively with stakeholders. Build trust. Maximize strengths to achieve common goals.</div>
+            <div style="font-size:11.5px;color:var(--blue);font-weight:600;">Effective Communication · Feedback &amp; Recognition · Common Goal</div>
+          </div>
+          <div style="background:var(--surface2);border:1px solid rgba(0,80,179,.15);border-radius:8px;padding:16px;">
+            <div style="font-size:28px;font-weight:800;color:var(--blue);letter-spacing:-1px;margin-bottom:4px;">C</div>
+            <div style="font-size:14px;font-weight:700;color:var(--text);">Cognition</div>
+            <div style="font-size:12px;color:var(--text3);margin-bottom:10px;">认知及判断力</div>
+            <div style="font-size:12.5px;color:var(--text2);line-height:1.6;margin-bottom:10px;">Quickly form accurate judgments. Leverage experience to assess unknowns and find optimal solutions.</div>
+            <div style="font-size:11.5px;color:var(--blue);font-weight:600;">Root Cause ID · Sound Judgment · Optimal Solutions</div>
+          </div>
+          <div style="background:var(--surface2);border:1px solid rgba(0,80,179,.15);border-radius:8px;padding:16px;">
+            <div style="font-size:28px;font-weight:800;color:var(--blue);letter-spacing:-1px;margin-bottom:4px;">H</div>
+            <div style="font-size:14px;font-weight:700;color:var(--text);">Hunger</div>
+            <div style="font-size:12px;color:var(--text3);margin-bottom:10px;">推动力</div>
+            <div style="font-size:12.5px;color:var(--text2);line-height:1.6;margin-bottom:10px;">Hungry for knowledge. Push through resilience. Desire to grow, innovate, and self-develop.</div>
+            <div style="font-size:11.5px;color:var(--blue);font-weight:600;">Growth Hunger · Resilience · Driving Innovation</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="panel-title">KATCH Scoring Scale</div>
+        <div style="font-size:12px;color:var(--text3);margin-bottom:12px;">Click any row to expand full descriptions</div>
+
+        <!-- Column headers -->
+        <div style="display:grid;grid-template-columns:70px 90px repeat(5,1fr);gap:8px;padding:0 12px 8px;border-bottom:2px solid var(--border);">
+          <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;">Score</div>
+          <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;">Level</div>
+          <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;">Knowledge</div>
+          <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;">Acumen</div>
+          <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;">Teamwork</div>
+          <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;">Cognition</div>
+          <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;">Hunger</div>
+        </div>
+
+        <!-- Score 5: Exemplary -->
+        <div class="katch-scale-row" onclick="toggleKatchRow('ks5')" style="cursor:pointer;border-bottom:1px solid var(--border);padding:10px 12px;transition:background .15s;" onmouseenter="this.style.background='var(--bg2)'" onmouseleave="this.style.background=''">
+          <div style="display:grid;grid-template-columns:70px 90px repeat(5,1fr);gap:8px;align-items:center;">
+            <div><span class="badge badge-green" style="font-size:13px;">5</span></div>
+            <div style="font-weight:700;color:var(--green);font-size:13px;">Exemplary <span id="karr-ks5" style="font-size:10px;color:var(--text3);">▼</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;"><span class="skill-tag" style="font-size:11px;">Deep</span><span class="skill-tag" style="font-size:11px;">Creative</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;"><span class="skill-tag" style="font-size:11px;">Sharp</span><span class="skill-tag" style="font-size:11px;">Bold</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;"><span class="skill-tag" style="font-size:11px;">Inspiring</span><span class="skill-tag" style="font-size:11px;">Trusted</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;"><span class="skill-tag" style="font-size:11px;">Insightful</span><span class="skill-tag" style="font-size:11px;">Decisive</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;"><span class="skill-tag" style="font-size:11px;">Driven</span><span class="skill-tag" style="font-size:11px;">Restless</span></div>
+          </div>
+          <div id="ks5" style="display:none;margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);">
+            <div style="display:grid;grid-template-columns:70px 90px repeat(5,1fr);gap:8px;">
+              <div></div><div></div>
+              <div style="font-size:12px;color:var(--text2);">Pioneers new approaches; seen as the domain expert across the org</div>
+              <div style="font-size:12px;color:var(--text2);">Drives business-level decisions; insights translate to measurable growth</div>
+              <div style="font-size:12px;color:var(--text2);">Builds high-trust teams; elevates others, multiplies team output</div>
+              <div style="font-size:12px;color:var(--text2);">Sees patterns others miss; consistently arrives at best-path first</div>
+              <div style="font-size:12px;color:var(--text2);">Self-driven force; creates new opportunities and energises those around them</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Score 4: Proficient -->
+        <div class="katch-scale-row" onclick="toggleKatchRow('ks4')" style="cursor:pointer;border-bottom:1px solid var(--border);padding:10px 12px;transition:background .15s;" onmouseenter="this.style.background='var(--bg2)'" onmouseleave="this.style.background=''">
+          <div style="display:grid;grid-template-columns:70px 90px repeat(5,1fr);gap:8px;align-items:center;">
+            <div><span class="badge badge-blue" style="font-size:13px;">4</span></div>
+            <div style="font-weight:700;color:var(--blue);font-size:13px;">Proficient <span id="karr-ks4" style="font-size:10px;color:var(--text3);">▼</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;"><span class="skill-tag" style="font-size:11px;">Strong</span><span class="skill-tag" style="font-size:11px;">Independent</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;"><span class="skill-tag" style="font-size:11px;">Aware</span><span class="skill-tag" style="font-size:11px;">Useful</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;"><span class="skill-tag" style="font-size:11px;">Clear</span><span class="skill-tag" style="font-size:11px;">Reliable</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;"><span class="skill-tag" style="font-size:11px;">Logical</span><span class="skill-tag" style="font-size:11px;">Flexible</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;"><span class="skill-tag" style="font-size:11px;">Proactive</span><span class="skill-tag" style="font-size:11px;">Resilient</span></div>
+          </div>
+          <div id="ks4" style="display:none;margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);">
+            <div style="display:grid;grid-template-columns:70px 90px repeat(5,1fr);gap:8px;">
+              <div></div><div></div>
+              <div style="font-size:12px;color:var(--text2);">Strong depth, continuously learning, solves most problems independently</div>
+              <div style="font-size:12px;color:var(--text2);">Participates meaningfully in planning, understands business levers</div>
+              <div style="font-size:12px;color:var(--text2);">Communicates well, fosters team cohesion, reliable partner</div>
+              <div style="font-size:12px;color:var(--text2);">Makes sound decisions with good reasoning; recovers quickly from mistakes</div>
+              <div style="font-size:12px;color:var(--text2);">Proactively seeks growth, bounces back from setbacks with determination</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Score 3: Developing -->
+        <div class="katch-scale-row" onclick="toggleKatchRow('ks3')" style="cursor:pointer;border-bottom:1px solid var(--border);padding:10px 12px;transition:background .15s;" onmouseenter="this.style.background='var(--bg2)'" onmouseleave="this.style.background=''">
+          <div style="display:grid;grid-template-columns:70px 90px repeat(5,1fr);gap:8px;align-items:center;">
+            <div><span class="badge badge-amber" style="font-size:13px;">3</span></div>
+            <div style="font-weight:700;color:var(--amber);font-size:13px;">Developing <span id="karr-ks3" style="font-size:10px;color:var(--text3);">▼</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;"><span class="skill-tag" style="font-size:11px;">Basic</span><span class="skill-tag" style="font-size:11px;">Guided</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;"><span class="skill-tag" style="font-size:11px;">Limited</span><span class="skill-tag" style="font-size:11px;">Narrow</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;"><span class="skill-tag" style="font-size:11px;">Helpful</span><span class="skill-tag" style="font-size:11px;">Uneven</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;"><span class="skill-tag" style="font-size:11px;">Decent</span><span class="skill-tag" style="font-size:11px;">Slow</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;"><span class="skill-tag" style="font-size:11px;">Willing</span><span class="skill-tag" style="font-size:11px;">Needs a Push</span></div>
+          </div>
+          <div id="ks3" style="display:none;margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);">
+            <div style="display:grid;grid-template-columns:70px 90px repeat(5,1fr);gap:8px;">
+              <div></div><div></div>
+              <div style="font-size:12px;color:var(--text2);">Solid baseline, needs guidance on complex problems</div>
+              <div style="font-size:12px;color:var(--text2);">Understands their area but limited broader business perspective</div>
+              <div style="font-size:12px;color:var(--text2);">Gets work done collaboratively but communication gaps surface under pressure</div>
+              <div style="font-size:12px;color:var(--text2);">Reasonable judgment, occasionally misses root cause or takes longer than expected</div>
+              <div style="font-size:12px;color:var(--text2);">Motivated but not always self-driven; needs encouragement to step up</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Score 2: Limited -->
+        <div class="katch-scale-row" onclick="toggleKatchRow('ks2')" style="cursor:pointer;border-bottom:1px solid var(--border);padding:10px 12px;transition:background .15s;" onmouseenter="this.style.background='var(--bg2)'" onmouseleave="this.style.background=''">
+          <div style="display:grid;grid-template-columns:70px 90px repeat(5,1fr);gap:8px;align-items:center;">
+            <div><span class="badge badge-gray" style="font-size:13px;">2</span></div>
+            <div style="font-weight:700;color:var(--text3);font-size:13px;">Limited <span id="karr-ks2" style="font-size:10px;color:var(--text3);">▼</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;"><span class="skill-tag" style="font-size:11px;">Shallow</span><span class="skill-tag" style="font-size:11px;">Dependent</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;"><span class="skill-tag" style="font-size:11px;">Unaware</span><span class="skill-tag" style="font-size:11px;">Short-sighted</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;"><span class="skill-tag" style="font-size:11px;">Closed-off</span><span class="skill-tag" style="font-size:11px;">Unclear</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;"><span class="skill-tag" style="font-size:11px;">Slow</span><span class="skill-tag" style="font-size:11px;">Inconsistent</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;"><span class="skill-tag" style="font-size:11px;">Passive</span><span class="skill-tag" style="font-size:11px;">Complacent</span></div>
+          </div>
+          <div id="ks2" style="display:none;margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);">
+            <div style="display:grid;grid-template-columns:70px 90px repeat(5,1fr);gap:8px;">
+              <div></div><div></div>
+              <div style="font-size:12px;color:var(--text2);">Knowledge gaps; relies heavily on others for direction</div>
+              <div style="font-size:12px;color:var(--text2);">Limited commercial awareness; misses business implications</div>
+              <div style="font-size:12px;color:var(--text2);">Struggles with cross-functional collaboration; communication unclear</div>
+              <div style="font-size:12px;color:var(--text2);">Slow to identify issues; judgment inconsistent</div>
+              <div style="font-size:12px;color:var(--text2);">Passive learner; needs repeated prompting to push forward</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Score 1: Insufficient -->
+        <div class="katch-scale-row" onclick="toggleKatchRow('ks1')" style="cursor:pointer;padding:10px 12px;transition:background .15s;" onmouseenter="this.style.background='var(--bg2)'" onmouseleave="this.style.background=''">
+          <div style="display:grid;grid-template-columns:70px 90px repeat(5,1fr);gap:8px;align-items:center;">
+            <div><span class="badge badge-red" style="font-size:13px;">1</span></div>
+            <div style="font-weight:700;color:var(--red);font-size:13px;">Insufficient <span id="karr-ks1" style="font-size:10px;color:var(--text3);">▼</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;"><span class="skill-tag" style="font-size:11px;">Weak</span><span class="skill-tag" style="font-size:11px;">Lost</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;"><span class="skill-tag" style="font-size:11px;">Blind</span><span class="skill-tag" style="font-size:11px;">Impractical</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;"><span class="skill-tag" style="font-size:11px;">Difficult</span><span class="skill-tag" style="font-size:11px;">Isolated</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;"><span class="skill-tag" style="font-size:11px;">Poor</span><span class="skill-tag" style="font-size:11px;">Off-track</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;"><span class="skill-tag" style="font-size:11px;">Checked out</span><span class="skill-tag" style="font-size:11px;">Gives up</span></div>
+          </div>
+          <div id="ks1" style="display:none;margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);">
+            <div style="display:grid;grid-template-columns:70px 90px repeat(5,1fr);gap:8px;">
+              <div></div><div></div>
+              <div style="font-size:12px;color:var(--text2);">Fundamental knowledge missing; cannot execute independently</div>
+              <div style="font-size:12px;color:var(--text2);">No business awareness; decisions detached from commercial reality</div>
+              <div style="font-size:12px;color:var(--text2);">Creates friction; does not build effective working relationships</div>
+              <div style="font-size:12px;color:var(--text2);">Poor judgment; misidentifies problems and pursues wrong paths</div>
+              <div style="font-size:12px;color:var(--text2);">No initiative; gives up when challenged; growth mindset absent</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- VIEW: SOURCING COPILOT -->
+    <div class="view" id="view-sourcing">
+      <div class="sec-hdr">
+        <div>
+          <div class="sec-title">Sourcing Copilot</div>
+          <div class="sec-sub">Generate Boolean strings, target companies, LinkedIn directions &amp; outreach drafts in one click</div>
+        </div>
+      </div>
+
+      <div class="g2" style="align-items:flex-start;">
+
+        <!-- LEFT: INPUTS -->
+        <div style="display:flex;flex-direction:column;gap:16px;">
+
+          <!-- Step 1: Role basis -->
+          <div class="card">
+            <div class="panel-title" style="margin-bottom:14px;">Step 1 — Define the Role</div>
+
+            <div class="f-group">
+              <label class="f-label">Pull from current JD</label>
+              <button class="btn btn-ghost btn-sm" onclick="srcPullJD()" style="width:100%;justify-content:center;">⟳ Import from Upload CVs page</button>
+              <div id="src-jd-preview" style="display:none;margin-top:8px;padding:10px 12px;background:var(--bg2,#f7f7f7);border-radius:6px;font-size:12px;color:var(--text2);border:1px solid var(--border);"></div>
+            </div>
+
+            <div style="text-align:center;font-size:11px;color:var(--text3);margin:4px 0;">— or fill manually —</div>
+
+            <div class="f-group">
+              <label class="f-label">Role Title</label>
+              <input class="f-input" id="src-title" placeholder="e.g. Senior Backend Engineer – Web3">
+            </div>
+            <div class="f-row">
+              <div class="f-group" style="margin-bottom:0;">
+                <label class="f-label">Team / Function</label>
+                <select class="f-select" id="src-team">
+                  <option value="">Select...</option>
+                  <option>Technology / Engineering</option>
+                  <option>Product Management</option>
+                  <option>Growth &amp; Marketing</option>
+                  <option>Data Science / Analytics</option>
+                  <option>Compliance &amp; Legal</option>
+                  <option>Finance &amp; Strategy</option>
+                  <option>Business Development</option>
+                  <option>Operations</option>
+                  <option>Design / UX</option>
+                </select>
+              </div>
+              <div class="f-group" style="margin-bottom:0;">
+                <label class="f-label">Seniority</label>
+                <select class="f-select" id="src-level">
+                  <option>Junior / Early Career (P3–P4)</option>
+                  <option>Senior (P5–P6)</option>
+                  <option>Staff / Lead (P6–P7)</option>
+                  <option>Principal / Director (P7–P8)</option>
+                  <option>VP / Head-of (P9+)</option>
+                </select>
+              </div>
+            </div>
+            <div class="f-group" style="margin-top:12px;">
+              <label class="f-label">Must-Have Skills / Keywords</label>
+              <input class="f-input" id="src-skills" placeholder="e.g. Go, Kafka, Web3, DeFi, system design">
+            </div>
+            <div class="f-group">
+              <label class="f-label">Nice-to-Have Skills</label>
+              <input class="f-input" id="src-nice" placeholder="e.g. Rust, L2, cross-border payments">
+            </div>
+            <div class="f-group">
+              <label class="f-label">Location / Market</label>
+              <input class="f-input" id="src-loc" placeholder="e.g. Singapore, Hong Kong, Remote-APAC">
+            </div>
+          </div>
+
+          <!-- Step 2: Ideal candidate -->
+          <div class="card">
+            <div class="panel-title" style="margin-bottom:4px;">Step 2 — Ideal Candidate Profile <span style="font-size:11px;font-weight:400;color:var(--text3);">(optional)</span></div>
+            <div style="font-size:12px;color:var(--text3);margin-bottom:14px;">Give us a reference point — any one of the three methods below works</div>
+
+            <!-- Toggle tabs -->
+            <div style="display:flex;gap:0;border:1px solid var(--border);border-radius:7px;overflow:hidden;margin-bottom:14px;">
+              <button id="src-tab-url" onclick="srcSwitchTab('url')" style="flex:1;padding:7px 6px;font-size:12px;font-weight:600;border:none;cursor:pointer;background:#000;color:#fff;transition:all .15s;">LinkedIn URL</button>
+              <button id="src-tab-text" onclick="srcSwitchTab('text')" style="flex:1;padding:7px 6px;font-size:12px;font-weight:600;border:none;cursor:pointer;background:var(--surface2);color:var(--text3);border-left:1px solid var(--border);transition:all .15s;">Paste Background</button>
+              <button id="src-tab-file" onclick="srcSwitchTab('file')" style="flex:1;padding:7px 6px;font-size:12px;font-weight:600;border:none;cursor:pointer;background:var(--surface2);color:var(--text3);border-left:1px solid var(--border);transition:all .15s;">Upload CV</button>
+            </div>
+
+            <!-- LinkedIn URL input -->
+            <div id="src-panel-url" class="f-group" style="margin-bottom:0;">
+              <label class="f-label">LinkedIn Profile URL</label>
+              <input class="f-input" id="src-li-url" placeholder="https://www.linkedin.com/in/username" style="font-size:13px;">
+              <div style="font-size:11.5px;color:var(--text3);margin-top:5px;">Paste the profile URL of your benchmark candidate — we'll use their visible title, company and tenure as sourcing signals.</div>
+            </div>
+
+            <!-- Paste background -->
+            <div id="src-panel-text" class="f-group" style="margin-bottom:0;display:none;">
+              <label class="f-label">Describe the ideal candidate</label>
+              <textarea class="f-textarea" id="src-ideal" style="min-height:90px;" placeholder="e.g. Ex-Binance backend lead, 8 yrs exp, high-throughput order matching systems, strong in Go + Kafka, OSS contributor..."></textarea>
+            </div>
+
+            <!-- File upload -->
+            <div id="src-panel-file" style="display:none;">
+              <label class="f-label" style="display:block;margin-bottom:6px;">Upload CV / Resume</label>
+              <label style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border:2px dashed var(--border);border-radius:8px;padding:20px;cursor:pointer;background:var(--surface2);transition:border-color .15s;" onmouseenter="this.style.borderColor='#000'" onmouseleave="this.style.borderColor='var(--border)'">
+                <span style="font-size:22px;">📄</span>
+                <span style="font-size:13px;font-weight:600;">Drop CV here or click to browse</span>
+                <span style="font-size:11.5px;color:var(--text3);">PDF or Word — we'll extract skills and background to guide sourcing</span>
+                <input type="file" accept=".pdf,.doc,.docx" style="display:none;" onchange="srcReadFile(this)">
+              </label>
+              <div id="src-file-preview" style="display:none;margin-top:8px;padding:9px 12px;background:var(--green-dim);border-radius:6px;font-size:12px;color:var(--green);"></div>
+            </div>
+
+            <div class="f-group" style="margin-top:14px;margin-bottom:0;">
+              <label class="f-label">Industries / Companies to target</label>
+              <input class="f-input" id="src-industries" placeholder="e.g. Crypto exchanges, TradFi, fintech unicorns">
+            </div>
+          </div>
+
+          <!-- Step 3: Output preferences -->
+          <div class="card">
+            <div class="panel-title" style="margin-bottom:12px;">Step 3 — What to Generate</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;"><input type="checkbox" id="src-opt-bool" checked="" style="width:15px;height:15px;accent-color:#000;"> Boolean search strings (LinkedIn Recruiter)</label>
+              <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;"><input type="checkbox" id="src-opt-li" checked="" style="width:15px;height:15px;accent-color:#000;"> LinkedIn Recruiter filter directions</label>
+              <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;"><input type="checkbox" id="src-opt-co" checked="" style="width:15px;height:15px;accent-color:#000;"> Target company list</label>
+              <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;"><input type="checkbox" id="src-opt-msg" checked="" style="width:15px;height:15px;accent-color:#000;"> LinkedIn InMail outreach draft</label>
+            </div>
+            <button class="btn" style="width:100%;margin-top:16px;padding:12px;font-size:14px;" onclick="runSourcing()">⌖ Generate Sourcing Pack</button>
+          </div>
+        </div>
+
+        <!-- RIGHT: OUTPUTS -->
+        <div id="src-output-panel" style="display:flex;flex-direction:column;gap:16px;">
+
+          <!-- Empty state -->
+          <div id="src-empty" class="card" style="text-align:center;padding:48px 24px;">
+            <div style="font-size:36px;margin-bottom:12px;">⌖</div>
+            <div style="font-weight:600;font-size:15px;margin-bottom:6px;">Ready to source</div>
+            <div style="font-size:13px;color:var(--text3);">Fill in the role details on the left and click<br><strong>Generate Sourcing Pack</strong> to get your full sourcing toolkit.</div>
+          </div>
+
+          <!-- Boolean Strings -->
+          <div class="card" id="src-bool-card" style="display:none;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+              <div class="panel-title" style="margin-bottom:0;">Boolean Search Strings</div>
+              <button class="btn btn-ghost btn-sm" onclick="copyBlock('src-bool-body')">Copy all</button>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;" id="src-bool-body"></div>
+          </div>
+
+          <!-- LinkedIn Recruiter Directions -->
+          <div class="card" id="src-li-card" style="display:none;">
+            <div class="panel-title" style="margin-bottom:12px;">LinkedIn Recruiter — Filter Guide</div>
+            <div id="src-li-body"></div>
+          </div>
+
+          <!-- Target Companies -->
+          <div class="card" id="src-co-card" style="display:none;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+              <div class="panel-title" style="margin-bottom:0;">Target Companies to Source From</div>
+              <span style="font-size:11px;color:var(--text3);">Talent-rich pools for this profile</span>
+            </div>
+            <div id="src-co-body"></div>
+          </div>
+
+          <!-- Outreach Draft -->
+          <div class="card" id="src-msg-card" style="display:none;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+              <div class="panel-title" style="margin-bottom:0;">LinkedIn InMail Draft</div>
+              <button class="btn btn-ghost btn-sm" onclick="copyBlock('src-msg-body')">Copy</button>
+            </div>
+            <div id="src-msg-body"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW: DASHBOARD -->
+    <div class="view" id="view-dashboard">
+      <div class="sec-hdr">
+        <div>
+          <div class="sec-title">Pipeline Dashboard</div>
+          <div class="sec-sub">This session's screening summary</div>
+        </div>
+        <button class="btn btn-ghost btn-sm" onclick="renderDash()">Refresh</button>
+      </div>
+
+      <div class="g4" style="margin-bottom:20px;">
+        <div class="stat"><div class="stat-val" id="d-total">0</div><div class="stat-lbl">CVs Screened</div></div>
+        <div class="stat"><div class="stat-val" style="color:var(--green);" id="d-short">0</div><div class="stat-lbl">Shortlisted (Score 80+)</div></div>
+        <div class="stat"><div class="stat-val" style="color:var(--purple);" id="d-ai">–</div><div class="stat-lbl">Avg AI Score</div></div>
+        <div class="stat"><div class="stat-val" style="color:var(--blue);" id="d-katch">–</div><div class="stat-lbl">Avg KATCH Score</div></div>
+      </div>
+      <div class="g4" style="margin-bottom:20px;">
+        <div class="stat"><div class="stat-val" id="d-packs">0</div><div class="stat-lbl">Interview Packs Generated</div></div>
+        <div class="stat"><div class="stat-val" style="color:var(--blue);" id="d-k4">0</div><div class="stat-lbl">KATCH Knowledge ≥4</div></div>
+        <div class="stat"><div class="stat-val" style="color:var(--blue);" id="d-h4">0</div><div class="stat-lbl">KATCH Hunger ≥4</div></div>
+        <div class="stat"><div class="stat-val" style="color:var(--green);" id="d-fullkatch">0</div><div class="stat-lbl">Strong KATCH (75+)</div></div>
+      </div>
+
+      <div class="g2">
+        <div class="card">
+          <div class="panel-title">Top Candidates by Overall Score</div>
+          <div id="d-top"><div class="empty" style="padding:20px 0;"><div class="empty-txt">No candidates screened yet</div></div></div>
+        </div>
+        <div class="card">
+          <div class="panel-title">AI Nativeness Distribution</div>
+          <div id="d-dist"><div class="empty" style="padding:20px 0;"><div class="empty-txt">Screen candidates to see breakdown</div></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /page-content -->
+</div><!-- /main -->
+
+<!-- CANDIDATE MODAL -->
+<div class="modal-bg" id="cand-modal">
+  <div class="modal">
+    <div class="modal-hdr">
+      <div class="modal-title" id="modal-name">Candidate Profile</div>
+      <button class="modal-close" onclick="closeMod()">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ─── IN-APP BROWSER DETECTION — moved to DOMContentLoaded ─── */
+
+/* ─── MOBILE SIDEBAR ─── */
+function openMobileSidebar() {
+  document.querySelector('.sidebar').classList.add('mobile-open');
+  document.getElementById('sidebar-overlay').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+function closeMobileSidebar() {
+  document.querySelector('.sidebar').classList.remove('mobile-open');
+  document.getElementById('sidebar-overlay').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+/* ─── SYNC MOBILE NAV ACTIVE STATE ─── */
+function syncMobileNav(viewId) {
+  document.querySelectorAll('#mobile-nav button').forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes("'" + viewId + "'")) {
+      btn.classList.add('active');
+    }
+  });
+}
+
+/* ─── STATE ─── */
+const S = {
+  jd: { title:'', team:'', level:'', text:'', keywords:[] },
+  candidates: [], selected: new Set(), qPacks: 0,
+  sortKey: 'overall', sortDir: -1, stageFilter: 'all'
+};
+
+/* ─── NAV ─── */
+const PAGE_TITLES = {
+  upload:     ['Upload CVs & Job Description',   'OKX Hiring › Upload CVs'],
+  candidates: ['All Candidates',                  'OKX Hiring › Candidates'],
+  compare:    ['Side-by-Side Comparison',         'OKX Hiring › Compare'],
+  interview:  ['Interview Question Generator',    'OKX Hiring › Interview Prep'],
+  rubric:     ['AI Nativeness Rubric',            'OKX Hiring › AI Rubric'],
+  katch:      ['KATCH Scorecard',                 'OKX Hiring › KATCH Assessment'],
+  sourcing:   ['Sourcing Copilot',                'OKX Hiring › Sourcing'],
+  dashboard:  ['Pipeline Dashboard',              'OKX Hiring › Dashboard'],
+};
+const PAGE_ACTIONS = {
+  upload:     `<button class="btn btn-primary btn-sm" onclick="runScreen()">Run AI Screening</button>`,
+  candidates: `<button class="btn btn-secondary btn-sm" onclick="goView('compare')">Compare Selected</button><button class="btn btn-ghost btn-sm" onclick="exportCSV()">Export CSV</button>`,
+  compare:    `<button class="btn btn-ghost btn-sm" onclick="exportCSV()">Export CSV</button>`,
+  interview:  `<button class="btn btn-primary btn-sm" onclick="genQuestions()">Generate Questions</button>`,
+  rubric:     ``,
+  katch:      `<button class="btn btn-ghost btn-sm" onclick="window.print()">Print Scorecard</button>`,
+  dashboard:  `<button class="btn btn-ghost btn-sm" onclick="renderDash()">Refresh</button>`,
+};
+
+function goView(id) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const v = document.getElementById('view-' + id);
+  if (v) v.classList.add('active');
+  const n = document.querySelector(`.nav-item[data-view="${id}"]`);
+  if (n) n.classList.add('active');
+  const [title, bc] = PAGE_TITLES[id] || [id, id];
+  document.getElementById('topbar-title').textContent = title;
+  document.getElementById('breadcrumb').innerHTML = bc.replace('›', '<span class="topbar-sep">›</span>');
+  document.getElementById('topbar-actions').innerHTML = PAGE_ACTIONS[id] || '';
+  if (id === 'candidates') renderTable();
+  if (id === 'compare')    renderCompare();
+  if (id === 'dashboard')  renderDash();
+  if (id === 'interview')  populateCandDrop();
+  if (id === 'katch')      renderKatch();
+  // sync mobile bottom nav + close sidebar drawer
+  syncMobileNav(id);
+  closeMobileSidebar();
+  // scroll to top on mobile
+  const pc = document.querySelector('.page-content');
+  if (pc) pc.scrollTop = 0;
+}
+
+// nav item listeners moved to DOMContentLoaded above
+
+/* ─── FILE UPLOAD ─── */
+let files = [];
+
+// All DOM-dependent init runs after page fully loads
+window.addEventListener('DOMContentLoaded', function() {
+  // Drop zone
+  const dz = document.getElementById('drop-zone');
+  const fi = document.getElementById('cv-input');
+  if (dz && fi) {
+    dz.addEventListener('click', () => fi.click());
+    fi.addEventListener('change', e => addF(e.target.files));
+    dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('over'); });
+    dz.addEventListener('dragleave', () => dz.classList.remove('over'));
+    dz.addEventListener('drop', e => { e.preventDefault(); dz.classList.remove('over'); addF(e.dataTransfer.files); });
+  }
+
+  // Nav items
+  document.querySelectorAll('.nav-item').forEach(n => {
+    n.addEventListener('click', () => goView(n.dataset.view));
+  });
+
+  // Share modal backdrop
+  const sm = document.getElementById('share-modal');
+  if (sm) sm.addEventListener('click', function(e) {
+    if (e.target === this) closeShareModal();
+  });
+
+  // In-app browser detection (runs here so DOM is ready)
+  const ua = navigator.userAgent || '';
+  const isInApp = /FBAN|FBAV|Instagram|WhatsApp|MicroMessenger|Lark|Feishu|Line|Snapchat|Twitter|LinkedInApp/i.test(ua);
+  if (isInApp) {
+    const banner = document.getElementById('iab-banner');
+    if (banner) banner.style.display = 'block';
+    document.body.style.paddingTop = '120px';
+  }
+});
+
+function addF(fs) {
+  for (const f of fs) if (!files.find(x => x.name === f.name)) files.push(f);
+  renderFL();
+}
+function renderFL() {
+  const el = document.getElementById('file-list');
+  if (!files.length) { el.innerHTML = ''; return; }
+  el.innerHTML = `<div style="font-size:13px;color:var(--text3);margin-bottom:8px;">${files.length} file(s) queued</div>` +
+    files.map((f, i) => `<div style="display:flex;align-items:center;gap:9px;padding:8px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;margin-bottom:5px;font-size:13.5px;">
+      <span style="font-size:16px;">📄</span>
+      <span style="flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${f.name}</span>
+      <span style="color:var(--text3);">${(f.size/1024).toFixed(0)} KB</span>
+      <button onclick="files.splice(${i},1);renderFL();" style="background:none;border:none;color:var(--red);cursor:pointer;font-size:16px;line-height:1;">×</button>
+    </div>`).join('');
+}
+
+/* ─── ACCORDION ─── */
+function toggleSection(id) {
+  const el  = document.getElementById(id);
+  const arr = document.getElementById('arr-' + id.replace('s-', ''));
+  const open = el.style.display === 'flex' || (el.style.display !== 'none' && el.style.display !== '');
+  el.style.display  = open ? 'none' : 'flex';
+  el.style.flexDirection = 'column';
+  if (arr) arr.textContent = open ? '▼' : '▲';
+}
+
+function toggleKatchRow(id) {
+  const el  = document.getElementById(id);
+  const arr = document.getElementById('karr-' + id);
+  const open = el.style.display !== 'none' && el.style.display !== '';
+  el.style.display  = open ? 'none' : 'block';
+  if (arr) arr.textContent = open ? '▼' : '▲';
+}
+
+/* ─── SOURCING COPILOT ─── */
+
+function srcPullJD() {
+  const title    = (document.getElementById('jd-title')?.value    || '').trim();
+  const team     = (document.getElementById('jd-team')?.value     || '').trim();
+  const level    = (document.getElementById('jd-level')?.value    || '').trim();
+  const keywords = (document.getElementById('jd-keywords')?.value || '').trim();
+  if (!title && !keywords) {
+    alert('No JD found. Please fill in the Role Title and Keywords on the Upload CVs page first.');
+    return;
+  }
+  if (title)    document.getElementById('src-title').value  = title;
+  if (team)     document.getElementById('src-team').value   = team;
+  if (keywords) document.getElementById('src-skills').value = keywords;
+  // show preview
+  const prev = document.getElementById('src-jd-preview');
+  prev.style.display = 'block';
+  prev.innerHTML = `<strong>Imported:</strong> ${title || '(no title)'}${team ? ' · ' + team : ''}${level ? ' · ' + level : ''}${keywords ? '<br><span style="color:var(--text3);">Keywords: ' + keywords + '</span>' : ''}`;
+}
+
+function safeCopy(text, btn, label) {
+  // Works in all browsers including mobile in-app browsers
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).catch(() => safeCopyFallback(text));
+  } else {
+    safeCopyFallback(text);
+  }
+  if (btn) {
+    const orig = btn.textContent;
+    btn.textContent = 'Copied ✓';
+    btn.style.background = '#1a7a45'; btn.style.color = '#fff';
+    setTimeout(() => { btn.textContent = orig; btn.style.background = ''; btn.style.color = ''; }, 1600);
+  }
+}
+function safeCopyFallback(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;';
+  document.body.appendChild(ta);
+  ta.focus(); ta.select();
+  try { document.execCommand('copy'); } catch(e) {}
+  document.body.removeChild(ta);
+}
+function copyBlock(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  safeCopy(el.innerText || el.textContent, null, null);
+}
+
+/* ─── SHARE MODAL ─── */
+function openShareModal() {
+  const m = document.getElementById('share-modal');
+  m.style.display = 'flex';
+}
+function closeShareModal() {
+  document.getElementById('share-modal').style.display = 'none';
+}
+// share-modal backdrop listener moved to DOMContentLoaded above
+function shareDownload() {
+  const a = document.createElement('a');
+  a.href = window.location.href.startsWith('blob')
+    ? window.location.href
+    : window.location.pathname;
+  // Re-serialize current page as a blob for download
+  const html = document.documentElement.outerHTML;
+  const blob  = new Blob([html], { type: 'text/html' });
+  a.href = URL.createObjectURL(blob);
+  a.download = 'OKX_TA_Hiring_Tool.html';
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+}
+function copyShareMsg(id, btn) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  safeCopy(el.innerText || el.textContent, btn);
+}
+
+function srcSwitchTab(tab) {
+  ['url','text','file'].forEach(t => {
+    const btn   = document.getElementById('src-tab-' + t);
+    const panel = document.getElementById('src-panel-' + t);
+    const active = t === tab;
+    btn.style.background = active ? '#000' : 'var(--surface2)';
+    btn.style.color      = active ? '#fff' : 'var(--text3)';
+    if (panel) panel.style.display = active ? 'block' : 'none';
+  });
+}
+
+function srcReadFile(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const preview = document.getElementById('src-file-preview');
+  preview.style.display = 'block';
+  preview.textContent = `✓ "${file.name}" uploaded (${(file.size/1024).toFixed(0)} KB) — name and role signals will be used to guide sourcing.`;
+  // Store filename for reference in output
+  window._srcFileName = file.name;
+}
+
+function runSourcing() {
+  const title    = (document.getElementById('src-title').value    || '').trim();
+  const team     = (document.getElementById('src-team').value     || '').trim();
+  const level    = (document.getElementById('src-level').value    || '').trim();
+  const skills   = (document.getElementById('src-skills').value   || '').trim();
+  const nice     = (document.getElementById('src-nice').value     || '').trim();
+  const loc      = (document.getElementById('src-loc').value      || '').trim();
+  const liUrl    = (document.getElementById('src-li-url')?.value  || '').trim();
+  const idealText= (document.getElementById('src-ideal')?.value   || '').trim();
+  const ideal    = idealText || (liUrl ? 'LinkedIn profile: ' + liUrl : '') || (window._srcFileName ? 'CV: ' + window._srcFileName : '');
+  const inds     = (document.getElementById('src-industries').value || '').trim();
+
+  if (!title && !skills) {
+    alert('Please enter at least a Role Title or Must-Have Skills before generating.');
+    return;
+  }
+
+  const doBool = document.getElementById('src-opt-bool').checked;
+  const doLI   = document.getElementById('src-opt-li').checked;
+  const doCo   = document.getElementById('src-opt-co').checked;
+  const doMsg  = document.getElementById('src-opt-msg').checked;
+
+  // hide empty state
+  document.getElementById('src-empty').style.display = 'none';
+
+  // ── Parse skills into arrays ──
+  const mustArr  = skills ? skills.split(',').map(s => s.trim()).filter(Boolean) : [];
+  const niceArr  = nice   ? nice.split(',').map(s => s.trim()).filter(Boolean)   : [];
+  const locArr   = loc    ? loc.split(',').map(s => s.trim()).filter(Boolean)    : [];
+
+  // Determine if eng-type role
+  const isEng    = /engineer|backend|frontend|full.stack|devops|infra|sre|blockchain|protocol/i.test(title + team);
+  const isPM     = /product|pm\b/i.test(title + team);
+  const isData   = /data|analytic|scientist|ml|machine/i.test(title + team);
+
+  // ── Target companies logic ──
+  const cryptoExchanges  = ['Binance','Coinbase','Kraken','Bybit','Gate.io','Bitget','KuCoin','Huobi','dYdX','1inch'];
+  const fintech          = ['Stripe','Grab Financial','Sea Money','Wise','Revolut','Klarna','Adyen','Airwallex','Rapyd','Nium'];
+  const tradfi           = ['Goldman Sachs','JPMorgan','Citadel','Jump Trading','Two Sigma','DRW','IMC','Optiver'];
+  const techGiants       = ['Google','Meta','ByteDance','Ant Group','Tencent','Alibaba','Shopee','Grab'];
+  const web3             = ['Fireblocks','Chainalysis','Ledger','Alchemy','Consensys','Polygon Labs','Ripple','Avalanche'];
+  const pmCompanies      = ['Grab','Sea','GoTo','Gojek','Lazada','Shopee','Agoda','Klook'];
+  const dataCompanies    = ['Palantir','Snowflake','Databricks','dbt Labs','Amplitude','Mixpanel'];
+
+  let targetCos = [];
+  const indLower = (inds + ' ' + ideal).toLowerCase();
+  const alwaysInclude = cryptoExchanges.slice(0, 5);
+
+  if (isEng) {
+    targetCos = [...new Set([...alwaysInclude, ...web3.slice(0,4), ...tradfi.slice(0,3), ...techGiants.slice(0,3)])].slice(0,18);
+  } else if (isPM) {
+    targetCos = [...new Set([...alwaysInclude, ...pmCompanies, ...fintech.slice(0,4)])].slice(0,18);
+  } else if (isData) {
+    targetCos = [...new Set([...alwaysInclude, ...dataCompanies, ...tradfi.slice(0,3)])].slice(0,18);
+  } else {
+    targetCos = [...new Set([...alwaysInclude, ...fintech.slice(0,4), ...techGiants.slice(0,4)])].slice(0,18);
+  }
+  // Add user-specified industries
+  if (indLower.includes('tradfi') || indLower.includes('bank')) targetCos = [...new Set([...targetCos, ...tradfi])].slice(0,20);
+  if (indLower.includes('fintech'))                              targetCos = [...new Set([...targetCos, ...fintech])].slice(0,20);
+  if (indLower.includes('web3') || indLower.includes('crypto')) targetCos = [...new Set([...targetCos, ...web3])].slice(0,20);
+
+  // ── BOOLEAN STRINGS ──
+  if (doBool) {
+    const boolCard = document.getElementById('src-bool-card');
+    const boolBody = document.getElementById('src-bool-body');
+    boolCard.style.display = 'block';
+
+    // Build title variants
+    const titleClean = title.replace(/–|-/g, '').trim();
+    const titleParts  = titleClean.split(' ').filter(w => w.length > 2 && !/senior|staff|lead|principal|head|director/i.test(w));
+    const titleAlts   = [titleClean];
+    if (isEng)  titleAlts.push('Software Engineer', 'SWE', 'Developer');
+    if (isPM)   titleAlts.push('Product Manager', 'PM');
+    if (isData) titleAlts.push('Data Scientist', 'ML Engineer', 'Analytics Engineer');
+
+    const titleBool  = titleAlts.map(t => `"${t}"`).join(' OR ');
+    const skillsBool = mustArr.length ? mustArr.map(s => `"${s}"`).join(' OR ') : '';
+    const niceBool   = niceArr.length ? niceArr.map(s => `"${s}"`).join(' OR ') : '';
+    const locBool    = locArr.length  ? locArr.map(l => `"${l}"`).join(' OR ')  : '';
+    const cosBool    = targetCos.slice(0,8).map(c => `"${c}"`).join(' OR ');
+
+    const boolStrings = [];
+
+    // Core broad string
+    let coreStr = `(${titleBool})`;
+    if (skillsBool) coreStr += ` AND (${skillsBool})`;
+    if (locBool)    coreStr += ` AND (${locBool})`;
+    boolStrings.push({ label: 'Core Search', hint: 'Start here — broadest match', str: coreStr });
+
+    // Skills-heavy string
+    if (mustArr.length >= 2) {
+      const top3 = mustArr.slice(0,3).map(s => `"${s}"`).join(' AND ');
+      let skillHeavy = `(${titleBool}) AND ${top3}`;
+      if (locBool) skillHeavy += ` AND (${locBool})`;
+      boolStrings.push({ label: 'Skills-Specific', hint: 'Narrower — must have top 3 skills', str: skillHeavy });
+    }
+
+    // Company-poaching string
+    let coStr = `(${titleBool}) AND (${cosBool})`;
+    if (locBool) coStr += ` AND (${locBool})`;
+    boolStrings.push({ label: 'Competitor Poach', hint: 'Candidates currently at target companies', str: coStr });
+
+    // Nice-to-have enhanced
+    if (niceBool) {
+      let niceStr = `(${titleBool})`;
+      if (skillsBool) niceStr += ` AND (${skillsBool})`;
+      niceStr += ` AND (${niceBool})`;
+      boolStrings.push({ label: 'Preferred Profile', hint: 'Includes nice-to-have skills', str: niceStr });
+    }
+
+    // GitHub / OSS string for engineers
+    if (isEng) {
+      let ghStr = `(${skillsBool || titleBool}) AND ("open source" OR "GitHub" OR "OSS" OR "side project")`;
+      if (locBool) ghStr += ` AND (${locBool})`;
+      boolStrings.push({ label: 'OSS / Active Builder', hint: 'Engineers with public projects', str: ghStr });
+    }
+
+    boolBody.innerHTML = boolStrings.map(b => `
+      <div style="border:1px solid var(--border);border-radius:8px;padding:12px;background:var(--bg2,#f7f7f7);">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+          <div>
+            <span style="font-weight:700;font-size:13px;">${b.label}</span>
+            <span style="font-size:11px;color:var(--text3);margin-left:8px;">${b.hint}</span>
+          </div>
+          <button class="btn btn-ghost btn-sm" onclick="safeCopy(this.closest('div').querySelector('code').innerText,this)">Copy</button>
+        </div>
+        <code style="display:block;font-size:11.5px;line-height:1.7;word-break:break-word;color:var(--blue);background:#fff;border:1px solid var(--border);padding:8px 10px;border-radius:5px;">${b.str}</code>
+      </div>
+    `).join('');
+  } else {
+    document.getElementById('src-bool-card').style.display = 'none';
+  }
+
+  // ── LINKEDIN RECRUITER DIRECTIONS ──
+  if (doLI) {
+    const liCard = document.getElementById('src-li-card');
+    const liBody = document.getElementById('src-li-body');
+    liCard.style.display = 'block';
+
+    const liRows = [
+      { filter: 'Job Title Keywords', value: title || (isEng ? 'Software Engineer, Backend Engineer' : isPM ? 'Product Manager, PM' : 'Senior Manager'), tip: 'Use broad title variants; avoid too-specific strings' },
+      { filter: 'Current Company', value: targetCos.slice(0,6).join(', '), tip: 'Target competitors & talent-rich companies first' },
+      { filter: 'Skills', value: mustArr.slice(0,5).join(', ') || 'Add must-have skills', tip: 'Add up to 5 — LI Recruiter weights these heavily' },
+      { filter: 'Geography', value: loc || 'Singapore, Hong Kong, Remote — Asia', tip: 'Use "within 25 miles" for office roles; "any" for remote' },
+      { filter: 'Years of Experience', value: level.includes('Junior') ? '0–3 yrs' : level.includes('Senior') ? '5–9 yrs' : level.includes('Staff') ? '7–12 yrs' : '10+ yrs', tip: 'LI experience = total career, not just relevant experience' },
+      { filter: 'Industry', value: 'Financial Services, Computer Software, Internet', tip: 'Add "Blockchain & Cryptocurrency" for Web3 roles' },
+      { filter: 'Keywords (All fields)', value: mustArr.slice(0,4).join(' '), tip: 'Use sparingly — this searches entire profile including older jobs' },
+    ];
+    if (niceArr.length) liRows.push({ filter: 'Nice-to-have (Spotlight)', value: niceArr.slice(0,3).join(', '), tip: 'Set as a Spotlight filter, not a Must — keeps pool wider' });
+
+    liBody.innerHTML = `
+      <div style="overflow-x:auto;">
+        <table class="gh-table" style="font-size:12.5px;">
+          <thead><tr>
+            <th style="width:160px;">Filter</th>
+            <th>What to Enter</th>
+            <th>Tip</th>
+          </tr></thead>
+          <tbody>
+            ${liRows.map(r => `<tr>
+              <td style="font-weight:600;white-space:nowrap;">${r.filter}</td>
+              <td style="color:var(--blue);font-weight:500;">${r.value}</td>
+              <td style="color:var(--text3);font-size:12px;">${r.tip}</td>
+            </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:12px;padding:10px 12px;background:var(--amber-dim);border-radius:6px;font-size:12px;color:var(--amber);">
+        <strong>Pro tip:</strong> In LinkedIn Recruiter, use <em>Spotlight → "Open to work"</em> + <em>"Changed jobs in past year"</em> excluded to find passive talent. Save this search as an alert to get weekly new matches.
+      </div>`;
+  } else {
+    document.getElementById('src-li-card').style.display = 'none';
+  }
+
+  // ── TARGET COMPANIES ──
+  if (doCo) {
+    const coCard = document.getElementById('src-co-card');
+    const coBody = document.getElementById('src-co-body');
+    coCard.style.display = 'block';
+
+    // Categorise
+    const categories = [
+      { label: 'Crypto Exchanges (direct competitors)', color: 'var(--purple)', companies: targetCos.filter(c => cryptoExchanges.includes(c)) },
+      { label: 'Web3 / Blockchain', color: 'var(--blue)', companies: targetCos.filter(c => web3.includes(c)) },
+      { label: 'Fintech / Payments', color: 'var(--green)', companies: targetCos.filter(c => fintech.includes(c)) },
+      { label: 'TradFi / Quant', color: 'var(--amber)', companies: targetCos.filter(c => tradfi.includes(c)) },
+      { label: 'Big Tech / Super-apps', color: 'var(--red)', companies: targetCos.filter(c => techGiants.includes(c)) },
+    ].filter(cat => cat.companies.length > 0);
+
+    coBody.innerHTML = `
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        ${categories.map(cat => `
+          <div>
+            <div style="font-size:11px;font-weight:700;color:${cat.color};text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;">${cat.label}</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+              ${cat.companies.map(c => `
+                <div style="display:flex;align-items:center;gap:5px;padding:4px 10px;border:1px solid var(--border);border-radius:20px;font-size:12.5px;background:#fff;">
+                  ${c}
+                  <a href="https://www.linkedin.com/search/results/people/?keywords=${encodeURIComponent(c + ' ' + (title||''))}&origin=GLOBAL_SEARCH_HEADER" target="_blank" style="color:var(--blue);text-decoration:none;font-size:10px;margin-left:2px;" title="Search on LinkedIn">↗</a>
+                </div>`).join('')}
+            </div>
+          </div>`).join('')}
+      </div>
+      <div style="margin-top:14px;padding:10px 12px;background:var(--blue-dim);border-radius:6px;font-size:12px;color:var(--blue);">
+        <strong>Sourcing angle:</strong> Sort by "Changed jobs in past 12 months" OFF — you want <em>settled, passive</em> candidates at these firms who aren't actively looking but are open to the right move.
+      </div>`;
+  } else {
+    document.getElementById('src-co-card').style.display = 'none';
+  }
+
+  // ── OUTREACH DRAFT ──
+  if (doMsg) {
+    const msgCard = document.getElementById('src-msg-card');
+    const msgBody = document.getElementById('src-msg-body');
+    msgCard.style.display = 'block';
+
+    const roleShort = title || 'this role';
+    const skill1    = mustArr[0] || 'your background';
+    const skill2    = mustArr[1] || 'your expertise';
+    const locShort  = loc || 'our key markets';
+    const levelDesc = level.includes('Junior') ? 'early-career' : level.includes('Senior') || level.includes('Staff') ? 'senior' : level.includes('Principal') || level.includes('Director') ? 'leadership' : 'experienced';
+
+    const msgs = [
+      {
+        label: 'Cold outreach — passive candidate',
+        tone: 'Warm, direct, low-pressure',
+        text: `Hi [Name],
+
+I came across your profile and was impressed by your experience in ${skill1}${skill2 ? ' and ' + skill2 : ''} — exactly the kind of background we're looking for at OKX.
+
+We're building out our ${team || 'team'} and have an opening for a ${roleShort} based in ${locShort}. OKX is one of the world's leading crypto exchanges — we move fast, work on real scale, and give smart people the space to shape things.
+
+I'd love to share more if you're open to a quick chat — no pressure at all. Would a 20-minute call work for you this week or next?
+
+Best,
+[Your Name]
+TA Partner, OKX`
+      },
+      {
+        label: 'Follow-up — after no reply (7 days later)',
+        tone: 'Brief, respectful, easy to reply to',
+        text: `Hi [Name],
+
+Following up on my note from last week — just wanted to make sure it didn't get buried!
+
+We're still looking for a ${levelDesc} ${roleShort} and I genuinely think your profile is a strong match. Happy to keep it casual — even a 15-min intro call would be great.
+
+Is this on your radar at all?
+
+[Your Name]`
+      }
+    ];
+
+    msgBody.innerHTML = msgs.map(m => `
+      <div style="margin-bottom:16px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+          <div>
+            <span style="font-weight:700;font-size:13px;">${m.label}</span>
+            <span style="font-size:11px;color:var(--text3);margin-left:8px;">Tone: ${m.tone}</span>
+          </div>
+          <button class="btn btn-ghost btn-sm" onclick="safeCopy(this.closest('div').querySelector('pre').innerText,this)">Copy</button>
+        </div>
+        <pre style="white-space:pre-wrap;font-size:12.5px;line-height:1.7;background:var(--bg2,#f7f7f7);border:1px solid var(--border);border-radius:7px;padding:14px 16px;color:var(--text2);font-family:inherit;">${m.text}</pre>
+      </div>`).join('') + `
+      <div style="padding:10px 12px;background:var(--green-dim);border-radius:6px;font-size:12px;color:var(--green);">
+        <strong>InMail tips:</strong> Keep subject lines under 6 words. Reference something specific from their profile in your opening line to lift open rates. Send Tuesday–Thursday, 9–11am recipient's local time.
+      </div>`;
+  } else {
+    document.getElementById('src-msg-card').style.display = 'none';
+  }
+}
+
+/* ─── GREENHOUSE LINK PARSER ─── */
+function tryParseGH(url) {
+  if (!url || !url.includes('greenhouse.io')) return;
+  // Extract job ID from URL patterns like /jobs/1234567 or /sdash/1234567
+  const m = url.match(/\/(\d{5,})/);
+  const jobId = m ? m[1] : null;
+  if (jobId) {
+    toast('Greenhouse job ID detected: ' + jobId + ' — fill in role details or connect via API key');
+    // In a real integration: fetch(`https://harvest.greenhouse.io/v1/jobs/${jobId}`, { headers: { Authorization: 'Basic ' + btoa(apiKey + ':') } })
+    // For now, pre-fill a placeholder to guide the user
+    if (!document.getElementById('jd-title').value) {
+      document.getElementById('jd-title').value = 'GH Job #' + jobId;
+    }
+  } else {
+    toast('Paste the full Greenhouse job URL (must contain a numeric job ID)', true);
+  }
+}
+
+/* ─── TEMPLATES ─── */
+const TMPL = {
+  pm:  { title:'Senior PM – Web3 Growth', team:'Product Management', level:'P6 – Staff / Lead IC',
+    text:`OKX is seeking a Senior Product Manager to lead Web3 consumer growth products.\n\nResponsibilities:\n- Define and execute the product roadmap for Web3 growth\n- Partner cross-functionally with engineering, design, and marketing\n- Use AI-driven insights to inform product decisions\n\nRequirements:\n- 6+ years PM experience in fintech or crypto\n- Deep knowledge of DeFi, NFTs, and Web3 ecosystems\n- SQL, analytics, and data-driven decision-making\n- Experience using AI/LLM tools to enhance productivity`,
+    keywords: 'DeFi, Web3, SQL, AI tools, Product Roadmap, NFT, Cross-functional' },
+  eng: { title:'Staff Engineer – Backend Infrastructure', team:'Technology / Engineering', level:'P6 – Staff / Lead IC',
+    text:`We are looking for a Staff Backend Engineer to architect OKX's core trading infrastructure.\n\nRequirements:\n- 10+ years backend engineering, 3+ at staff level\n- Expert in Go, Java, or C++ with distributed systems\n- Kafka, gRPC, Kubernetes at scale\n- AI/ML inference pipeline integration experience`,
+    keywords: 'Go, Java, Distributed Systems, Kafka, Kubernetes, AI integration, Low-latency' },
+  data:{ title:'Principal Data Scientist – Growth', team:'Data Science / Analytics', level:'P7 – Principal / Sr. Manager',
+    text:`OKX seeks a Principal Data Scientist to build ML systems powering global growth.\n\nRequirements:\n- 8+ years data science and ML experience\n- Python, SQL, Spark, and PyTorch expertise\n- Hands-on LLM and generative AI experience\n- Track record of production ML at scale`,
+    keywords: 'Python, SQL, ML, PyTorch, LLM, Generative AI, Spark' },
+  biz: { title:'Director – Strategic BD', team:'Business Development', level:'P8 – Director / Sr. Principal',
+    text:`OKX is looking for a Director of Business Development to drive strategic partnerships globally.\n\nRequirements:\n- 10+ years BD in fintech or crypto\n- Track record closing significant partnerships\n- Deep institutional finance and Web3 network\n- AI tools experience for market analysis`,
+    keywords: 'Partnerships, Institutional, Web3, Crypto, Revenue Growth, AI tools' }
+};
+function loadT(k) {
+  const t = TMPL[k];
+  document.getElementById('jd-title').value    = t.title;
+  document.getElementById('jd-team').value     = t.team;
+  document.getElementById('jd-level').value    = t.level;
+  document.getElementById('jd-text').value     = t.text;
+  document.getElementById('jd-keywords').value = t.keywords;
+  toast('Template loaded: ' + t.title);
+}
+
+/* ─── SCREENING ─── */
+const NAMES     = ['Alex Chen','Priya Sharma','Marcus Johnson','Yuki Tanaka','Sofia Rodriguez','James O\'Brien','Nadia Al-Hassan','Kevin Liu','Emma Petrov','Aisha Diallo'];
+const ROLES     = ['Senior PM','Staff Engineer','Principal Data Scientist','Director of BD','Sr. Growth Lead','Head of Compliance','Staff SWE – Infra','Sr. Analytics Lead','Principal PM – Web3','VP Engineering'];
+const COS       = ['Google','Meta','Binance','Coinbase','ByteDance','Grab','Sea Group','Stripe','Revolut','JP Morgan'];
+const STRENGTHS = ['Strong quantitative background with production ML experience','Extensive Web3 protocol knowledge and on-chain product history','Proven track record scaling cross-functional teams','Deep AI/LLM integration expertise demonstrated in past roles','Executive-level stakeholder management and C-suite exposure','Cross-functional leadership across 4+ geographies'];
+const GAPS      = ['Limited direct crypto/blockchain experience','No evidence of AI tool adoption in workflow','Career primarily IC — leadership experience unclear','Primarily B2B background; consumer product experience thin','Strong technical depth but limited commercial exposure','Regional experience only — no global team leadership'];
+
+function runScreen() {
+  const title = document.getElementById('jd-title').value.trim();
+  const text  = document.getElementById('jd-text').value.trim();
+  if (!title && !text) { toast('Fill in the Job Description first', true); return; }
+  S.jd = {
+    title:    title || 'Unnamed Role',
+    team:     document.getElementById('jd-team').value,
+    level:    document.getElementById('jd-level').value,
+    text,
+    keywords: document.getElementById('jd-keywords').value.split(',').map(k => k.trim()).filter(Boolean)
+  };
+  const cnt = files.length > 0 ? Math.min(files.length + 2, 9) : 7;
+  S.candidates = []; S.selected = new Set();
+  for (let i = 0; i < cnt; i++) {
+    const nm = files[i] ? files[i].name.replace(/\.[^.]+$/, '').replace(/[_-]/g, ' ') : NAMES[i % NAMES.length];
+    S.candidates.push(mkCand(nm, i));
+  }
+  S.candidates.sort((a, b) => b.overall - a.overall);
+  updBadges();
+  toast('Screened ' + cnt + ' candidate' + (cnt > 1 ? 's' : '') + ' successfully');
+  goView('candidates');
+}
+
+function mkCand(name, seed) {
+  const r = (a, b, s=0) => Math.max(a, Math.min(b, Math.abs(Math.round(Math.sin(seed * 17.3 + s) * 500)) % (b - a + 1) + a));
+  const jdMatch = r(46, 97, 1), aiTool = r(1, 5, 2), aiMind = r(1, 5, 3), aiDepth = r(1, 5, 4), aiImpact = r(1, 5, 5);
+  const aiScore = Math.round((aiTool + aiMind + aiDepth + aiImpact) / 4 * 20);
+  // KATCH scores (1–5 each)
+  const kK = r(1, 5, 12), kA = r(1, 5, 13), kT = r(1, 5, 14), kC = r(1, 5, 15), kH = r(1, 5, 16);
+  const katchScore = Math.round((kK + kA + kT + kC + kH) / 25 * 100);
+  const overall = Math.round(jdMatch * 0.5 + aiScore * 0.3 + katchScore * 0.2);
+  const yoe = r(5, 18, 7);
+  return {
+    id: seed, name,
+    ini: name.split(' ').map(x => x[0]).join('').slice(0, 2).toUpperCase(),
+    role: ROLES[seed % ROLES.length], company: COS[r(0, COS.length - 1, 8)], yoe,
+    overall, jdMatch, aiScore, aiTool, aiMind, aiDepth, aiImpact,
+    kK, kA, kT, kC, kH, katchScore,
+    kws: S.jd.keywords.slice(0, r(0, S.jd.keywords.length, 9)),
+    strengths: STRENGTHS.slice(0, r(2, 3, 10)),
+    gaps: GAPS.slice(0, r(1, 2, 11)),
+    recommended: overall >= 76,
+    summary: `${yoe}-year veteran. ${jdMatch >= 80 ? 'Excellent JD alignment with core requirements demonstrated.' : jdMatch >= 65 ? 'Moderate JD fit with some gaps worth probing.' : 'Partial JD match — significant gaps in core requirements.'}`
+  };
+}
+
+function updBadges() {
+  const t = S.candidates;
+  document.getElementById('nb-candidates').textContent = t.length;
+  document.getElementById('nb-compare').textContent    = S.selected.size;
+  document.getElementById('s-all').textContent         = t.length;
+  document.getElementById('s-strong').textContent      = t.filter(c => c.overall >= 80).length;
+  document.getElementById('s-moderate').textContent    = t.filter(c => c.overall >= 60 && c.overall < 80).length;
+  document.getElementById('s-weak').textContent        = t.filter(c => c.overall < 60).length;
+  document.getElementById('s-ainative').textContent    = t.filter(c => c.aiScore >= 80).length;
+}
+
+/* ─── TABLE ─── */
+function sCls(v) { return v >= 80 ? 'score-hi' : v >= 65 ? 'score-mid' : 'score-lo'; }
+function sCol(v) { return v >= 80 ? 'var(--green)' : v >= 65 ? 'var(--amber)' : 'var(--red)'; }
+
+function sortBy(key, evt) {
+  if (S.sortKey === key) S.sortDir *= -1; else { S.sortKey = key; S.sortDir = -1; }
+  document.querySelectorAll('.sort-arrow').forEach(a => a.textContent = '↕');
+  const arrow = document.querySelector(`.sort-arrow[data-col="${key}"]`);
+  if (arrow) arrow.textContent = S.sortDir < 0 ? '▼' : '▲';
+  renderTable();
+}
+
+function filterStage(stage) {
+  S.stageFilter = stage;
+  document.querySelectorAll('.stage').forEach(s => s.classList.remove('active-stage'));
+  document.querySelector(`.stage[data-stage="${stage}"]`)?.classList.add('active-stage');
+  renderTable();
+}
+
+function renderTable() {
+  const search = (document.getElementById('search-box')?.value || '').toLowerCase();
+  let list = [...S.candidates];
+  if (S.stageFilter === 'strong')    list = list.filter(c => c.overall >= 80);
+  if (S.stageFilter === 'moderate')  list = list.filter(c => c.overall >= 60 && c.overall < 80);
+  if (S.stageFilter === 'weak')      list = list.filter(c => c.overall < 60);
+  if (S.stageFilter === 'ai-native') list = list.filter(c => c.aiScore >= 80);
+  if (search) list = list.filter(c => c.name.toLowerCase().includes(search) || c.company.toLowerCase().includes(search));
+  list.sort((a, b) => (a[S.sortKey] - b[S.sortKey]) * S.sortDir);
+
+  const tbody = document.getElementById('cand-tbody');
+  if (!list.length) {
+    tbody.innerHTML = `<tr><td colspan="11"><div class="empty"><div class="empty-ico">◈</div><div class="empty-txt">${S.candidates.length ? 'No candidates match this filter' : 'Upload CVs and run AI screening'}</div></div></td></tr>`;
+    return;
+  }
+  if (S.jd.title) document.getElementById('cand-sub').textContent = 'Role: ' + S.jd.title + '  ·  ' + S.candidates.length + ' candidates screened';
+
+  tbody.innerHTML = list.map(c => `
+    <tr onclick="openMod(${c.id})">
+      <td onclick="event.stopPropagation();"><input type="checkbox" ${S.selected.has(c.id) ? 'checked' : ''} onchange="togSel(${c.id},this)"/></td>
+      <td>
+        <div style="display:flex;align-items:center;gap:11px;">
+          <div class="av">${c.ini}</div>
+          <div>
+            <div style="font-weight:600;color:var(--text);font-size:14.5px;">${c.name}</div>
+            <div style="font-size:12.5px;color:var(--text3);">${c.company} · ${c.yoe} yrs</div>
+          </div>
+        </div>
+      </td>
+      <td style="color:var(--text2);font-size:13.5px;">${c.role}</td>
+      <td><span class="score-pill ${sCls(c.overall)}">${c.overall}</span></td>
+      <td>
+        <div style="font-size:14px;font-weight:600;color:${sCol(c.jdMatch)};">${c.jdMatch}%</div>
+        <div class="prog" style="width:72px;margin-top:4px;"><div class="prog-fill" style="width:${c.jdMatch}%;background:${sCol(c.jdMatch)};"></div></div>
+      </td>
+      <td>
+        <div style="font-size:14px;font-weight:600;color:var(--purple);">${c.aiScore}/100</div>
+        <div class="prog" style="width:72px;margin-top:4px;"><div class="prog-fill" style="width:${c.aiScore}%;background:var(--purple);"></div></div>
+      </td>
+      <td>
+        <div style="font-size:14px;font-weight:600;color:var(--blue);">${c.katchScore}/100</div>
+        <div style="display:flex;gap:3px;margin-top:4px;font-size:11px;color:var(--text3);">
+          <span title="Knowledge">K${c.kK}</span><span title="Acumen">A${c.kA}</span><span title="Teamwork">T${c.kT}</span><span title="Cognition">C${c.kC}</span><span title="Hunger">H${c.kH}</span>
+        </div>
+      </td>
+      <td>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;font-size:12px;min-width:100px;">
+          <span style="color:var(--text3);">Tool ${c.aiTool}/5</span><span style="color:var(--text3);">Mind ${c.aiMind}/5</span>
+          <span style="color:var(--text3);">Depth ${c.aiDepth}/5</span><span style="color:var(--text3);">Impact ${c.aiImpact}/5</span>
+        </div>
+      </td>
+      <td style="color:var(--text2);">${c.yoe} yrs</td>
+      <td>${c.recommended ? '<span class="badge badge-green">Recommend</span>' : '<span class="badge badge-gray">Review</span>'}</td>
+      <td>
+        <div style="display:flex;gap:5px;" onclick="event.stopPropagation();">
+          <button class="btn btn-ghost btn-xs" onclick="goIntv(${c.id})">Interview</button>
+          <button class="btn btn-ghost btn-xs" onclick="openMod(${c.id})">Details</button>
+        </div>
+      </td>
+    </tr>`).join('');
+}
+
+function togSel(id, cb) {
+  if (cb.checked) {
+    if (S.selected.size >= 5) { cb.checked = false; toast('Max 5 candidates for comparison', true); return; }
+    S.selected.add(id);
+  } else { S.selected.delete(id); }
+  document.getElementById('nb-compare').textContent = S.selected.size;
+}
+function toggleAll(cb) {
+  const rows = document.querySelectorAll('#cand-tbody input[type=checkbox]');
+  rows.forEach(r => {
+    const id = parseInt(r.getAttribute('onchange').match(/\d+/)[0]);
+    if (cb.checked && S.selected.size < 5) { S.selected.add(id); r.checked = true; }
+    else if (!cb.checked) { S.selected.delete(id); r.checked = false; }
+  });
+  document.getElementById('nb-compare').textContent = S.selected.size;
+}
+
+/* ─── MODAL ─── */
+function openMod(id) {
+  const c = S.candidates.find(x => x.id === id); if (!c) return;
+  document.getElementById('modal-name').textContent = c.name;
+  document.getElementById('modal-body').innerHTML = `
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:22px;">
+      <div class="av" style="width:52px;height:52px;font-size:18px;">${c.ini}</div>
+      <div style="flex:1;">
+        <div style="font-size:18px;font-weight:700;color:var(--text);">${c.name}</div>
+        <div style="font-size:13.5px;color:var(--text3);">${c.role} · ${c.company} · ${c.yoe} years experience</div>
+        <div style="margin-top:8px;">${c.recommended ? '<span class="badge badge-green" style="font-size:13px;">Recommended to Advance</span>' : '<span class="badge badge-gray" style="font-size:13px;">Needs Further Review</span>'}</div>
+      </div>
+      <div style="text-align:center;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:14px 20px;">
+        <div style="font-size:36px;font-weight:800;letter-spacing:-2px;color:${sCol(c.overall)};">${c.overall}</div>
+        <div style="font-size:12px;color:var(--text3);">Overall Score</div>
+      </div>
+    </div>
+
+    <div class="g2" style="margin-bottom:16px;">
+      <div class="card-sm">
+        <div style="font-size:11.5px;font-weight:700;color:var(--text3);letter-spacing:.4px;margin-bottom:5px;">JD MATCH</div>
+        <div style="font-size:24px;font-weight:700;color:${sCol(c.jdMatch)};">${c.jdMatch}%</div>
+        <div class="prog" style="height:7px;margin-top:8px;"><div class="prog-fill" style="width:${c.jdMatch}%;background:${sCol(c.jdMatch)};"></div></div>
+      </div>
+      <div class="card-sm">
+        <div style="font-size:11.5px;font-weight:700;color:var(--text3);letter-spacing:.4px;margin-bottom:5px;">AI NATIVENESS</div>
+        <div style="font-size:24px;font-weight:700;color:var(--purple);">${c.aiScore}/100</div>
+        <div class="prog" style="height:7px;margin-top:8px;"><div class="prog-fill" style="width:${c.aiScore}%;background:var(--purple);"></div></div>
+      </div>
+    </div>
+
+    <div class="card-sm" style="margin-bottom:16px;">
+      <div class="panel-title">AI Nativeness Breakdown</div>
+      ${[['AI Tool Usage', c.aiTool], ['Mindset & Adaptability', c.aiMind], ['Technical Depth', c.aiDepth], ['Impact Delivered', c.aiImpact]].map(([l, v]) => `
+        <div class="r-row" style="padding:9px 0;">
+          <div class="r-lbl" style="font-size:14px;">${l}</div>
+          <div style="flex:2;"><div class="prog" style="height:6px;"><div class="prog-fill" style="width:${v * 20}%;background:var(--yellow-dark);"></div></div></div>
+          <div class="r-val" style="font-size:15px;">${v}/5</div>
+        </div>`).join('')}
+    </div>
+
+    <div class="card-sm" style="margin-bottom:16px;border-color:rgba(0,80,179,.2);">
+      <div class="panel-title" style="color:var(--blue);">KATCH Competency Breakdown <span style="font-weight:400;font-size:11px;color:var(--text3);text-transform:none;letter-spacing:0;">OKG-wide competency framework</span></div>
+      ${[['K — Knowledge', 'Professional mastery & effective execution', c.kK], ['A — Acumen', 'Market understanding & business value creation', c.kA], ['T — Teamwork', 'Collaboration, communication & leadership', c.kT], ['C — Cognition', 'Root cause analysis, judgment & optimal solutions', c.kC], ['H — Hunger', 'Growth mindset, resilience & driving innovation', c.kH]].map(([l, sub, v]) => `
+        <div class="r-row" style="padding:9px 0;">
+          <div class="r-lbl" style="font-size:14px;">${l}<small>${sub}</small></div>
+          <div style="flex:2;"><div class="prog" style="height:6px;"><div class="prog-fill" style="width:${v * 20}%;background:var(--blue);"></div></div></div>
+          <div class="r-val" style="font-size:15px;color:var(--blue);">${v}/5</div>
+        </div>`).join('')}
+      <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:13px;color:var(--text3);">KATCH Overall</span>
+        <span style="font-size:17px;font-weight:700;color:var(--blue);">${c.katchScore}/100</span>
+      </div>
+    </div>
+
+    <div class="g2" style="margin-bottom:16px;">
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--green);letter-spacing:.4px;margin-bottom:10px;">STRENGTHS</div>
+        ${c.strengths.map(s => `<div style="font-size:13.5px;padding:7px 0;border-bottom:1px solid var(--border);color:var(--text2);">• ${s}</div>`).join('')}
+      </div>
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--red);letter-spacing:.4px;margin-bottom:10px;">GAPS</div>
+        ${c.gaps.map(g => `<div style="font-size:13.5px;padding:7px 0;border-bottom:1px solid var(--border);color:var(--text2);">• ${g}</div>`).join('')}
+      </div>
+    </div>
+
+    <div style="background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:14px;font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:18px;">
+      <span style="font-weight:700;color:var(--text);">AI Summary:  </span>${c.summary}
+    </div>
+
+    ${c.kws.length ? `<div style="margin-bottom:16px;"><div style="font-size:12px;font-weight:700;color:var(--text3);letter-spacing:.4px;margin-bottom:9px;">MATCHED KEYWORDS</div><div style="display:flex;flex-wrap:wrap;gap:6px;">${c.kws.map(k => `<span class="badge badge-yellow">${k}</span>`).join('')}</div></div>` : ''}
+
+    <div style="display:flex;gap:9px;padding-top:4px;">
+      <button class="btn btn-primary" style="flex:1;justify-content:center;" onclick="closeMod();goIntv(${c.id})">Generate Interview Questions</button>
+      <button class="btn btn-secondary" onclick="closeMod()">Close</button>
+    </div>`;
+  document.getElementById('cand-modal').classList.add('open');
+}
+function closeMod() { document.getElementById('cand-modal').classList.remove('open'); }
+document.getElementById('cand-modal').addEventListener('click', e => { if (e.target === document.getElementById('cand-modal')) closeMod(); });
+function goIntv(id) { goView('interview'); document.getElementById('q-cand').value = id; }
+
+/* ─── COMPARE ─── */
+function renderCompare() {
+  const sel = S.candidates.filter(c => S.selected.has(c.id));
+  const el = document.getElementById('compare-body');
+  if (sel.length < 2) { el.innerHTML = `<div class="empty"><div class="empty-ico">↔</div><div class="empty-txt">Select 2–5 candidates in the Candidates tab</div></div>`; return; }
+
+  const dims = [
+    { k:'overall',    l:'Overall Score',   mx:100 },
+    { k:'jdMatch',    l:'JD Match %',      mx:100 },
+    { k:'aiScore',    l:'AI Nativeness',   mx:100 },
+    { k:'katchScore', l:'KATCH Score',     mx:100 },
+    { k:'kK',         l:'K — Knowledge',   mx:5 },
+    { k:'kA',         l:'A — Acumen',      mx:5 },
+    { k:'kT',         l:'T — Teamwork',    mx:5 },
+    { k:'kC',         l:'C — Cognition',   mx:5 },
+    { k:'kH',         l:'H — Hunger',      mx:5 },
+    { k:'aiTool',     l:'AI Tool Usage',   mx:5 },
+    { k:'aiMind',     l:'AI Mindset',      mx:5 },
+    { k:'aiDepth',    l:'AI Tech Depth',   mx:5 },
+    { k:'aiImpact',   l:'AI Impact',       mx:5 },
+    { k:'yoe',        l:'Experience',      mx:20 },
+  ];
+  const mx = k => Math.max(...sel.map(c => c[k]));
+  const mn = k => Math.min(...sel.map(c => c[k]));
+
+  el.innerHTML = `
+    <div class="card" style="overflow-x:auto;margin-bottom:16px;">
+      <table class="gh-table">
+        <thead><tr>
+          <th style="min-width:160px;">Dimension</th>
+          ${sel.map(c => `<th style="text-align:center;min-width:140px;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+              <div class="av" style="width:36px;height:36px;font-size:13px;">${c.ini}</div>
+              <div style="color:var(--text);font-size:13.5px;font-weight:600;">${c.name}</div>
+              <div style="color:var(--text3);font-size:12px;font-weight:400;">${c.company}</div>
+            </div>
+          </th>`).join('')}
+        </tr></thead>
+        <tbody>
+          ${dims.map(d => `<tr>
+            <td style="color:var(--text3);font-size:14px;">${d.l}</td>
+            ${sel.map(c => { const v = c[d.k], isMx = v === mx(d.k), isMn = sel.length > 2 && v === mn(d.k);
+              return `<td class="${isMx ? 'best' : isMn ? 'worst' : ''}" style="text-align:center;font-size:14px;">
+                <div>${v}${d.mx === 5 ? '/5' : d.mx === 20 ? ' yrs' : ''}</div>
+                <div class="prog" style="width:80px;margin:5px auto 0;"><div class="prog-fill" style="width:${v/d.mx*100}%;background:${isMx ? 'var(--green)' : isMn ? 'var(--red)' : 'var(--yellow-dark)'};"></div></div>
+              </td>`;}).join('')}
+          </tr>`).join('')}
+          <tr>
+            <td style="color:var(--text3);font-size:14px;">Recommendation</td>
+            ${sel.map(c => `<td style="text-align:center;">${c.recommended ? '<span class="badge badge-green">Advance</span>' : '<span class="badge badge-gray">Review</span>'}</td>`).join('')}
+          </tr>
+          <tr>
+            <td style="color:var(--text3);font-size:14px;">Top Strength</td>
+            ${sel.map(c => `<td style="font-size:13px;color:var(--text3);">${c.strengths[0]}</td>`).join('')}
+          </tr>
+          <tr>
+            <td style="color:var(--text3);font-size:14px;">Top Gap</td>
+            ${sel.map(c => `<td style="font-size:13px;color:var(--red);">${c.gaps[0]}</td>`).join('')}
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:10px;font-size:12.5px;color:var(--text3);">Green = highest in category &nbsp;·&nbsp; Red = lowest (when 3 or more candidates compared)</div>
+    </div>
+    <div class="card">
+      <div class="panel-title">AI Hiring Recommendation</div>
+      ${hiringReco(sel)}
+    </div>`;
+}
+
+function hiringReco(sel) {
+  const s = [...sel].sort((a, b) => b.overall - a.overall);
+  const top = s[0], r2 = s[1];
+  return `<div style="background:var(--yellow-dim);border:1px solid var(--yellow-mid);border-radius:7px;padding:16px;margin-bottom:12px;">
+    <div style="font-size:14.5px;font-weight:700;color:var(--text);margin-bottom:6px;">Top Pick: ${top.name}</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;">${top.summary} Overall score <strong>${top.overall}/100</strong>, AI nativeness <strong>${top.aiScore}/100</strong>.</div>
+  </div>
+  ${r2 ? `<div style="font-size:14px;color:var(--text3);line-height:1.7;"><strong style="color:var(--text2);">Runner-up:</strong> ${r2.name} (${r2.overall}/100) — ${r2.strengths[0]?.toLowerCase()}.</div>` : ''}`;
+}
+
+/* ─── DEPT SELECTOR ─── */
+function onDeptChange() {
+  const dept = document.getElementById('q-dept').value;
+  const isEng = dept.startsWith('eng');
+  const isPM  = dept === 'pm';
+  document.getElementById('eng-focus-group').style.display = isEng ? '' : 'none';
+  document.getElementById('pm-focus-group').style.display  = isPM  ? '' : 'none';
+  // Auto-toggle standard focus areas for context
+  if (isEng) {
+    document.getElementById('f-ai').checked     = false;
+    document.getElementById('f-tech').checked   = false;
+    document.getElementById('f-lead').checked   = false;
+    document.getElementById('f-culture').checked = true;
+  } else if (isPM) {
+    document.getElementById('f-ai').checked     = false;
+    document.getElementById('f-tech').checked   = false;
+    document.getElementById('f-lead').checked   = true;
+    document.getElementById('f-culture').checked = true;
+  } else {
+    document.getElementById('f-ai').checked     = true;
+    document.getElementById('f-tech').checked   = true;
+    document.getElementById('f-lead').checked   = true;
+    document.getElementById('f-culture').checked = true;
+  }
+}
+
+/* ─── ENGINEERING + PM QUESTION BANKS ─── */
+const QB_ENG = {
+  eng1: [
+    { q:'Which AI tools do you use in your daily development workflow? How frequently do you use each? Please rank them by usage frequency.', e:'[Eng Dim 1: AI Tool Knowledge] Average: 1–2 tools vaguely. Good: 3–5 with weekly patterns and use cases. Great: Ranked tool stack with task-fit logic, constraints (data policy, cost), and replacement criteria.' },
+    { q:'How would you differentiate Claude Code, GitHub Copilot, and Cursor in terms of positioning and ideal use cases?', e:'[Eng Dim 1] Average: All similar. Good: Workflow distinctions (terminal/agentic vs IDE-native vs AI-first editor). Great: Decision matrix by repo scale, governance, IDE stack, security posture, with concrete examples of when each wins.' },
+    { q:'What is MCP (Model Context Protocol)? What problem does it solve? Have you ever configured MCP connectors?', e:'[Eng Dim 1] Average: Knows it connects tools to models. Good: Standard interface reducing custom integrations. Great: Describes client/server/tools architecture, security boundaries, real setup experience (internal docs, DB read-only connectors).' },
+    { q:'How does the context window of an AI coding assistant affect how you work? How do you manage context in large projects?', e:'[Eng Dim 1] Average: Bigger is better. Good: Chunking files, summarizing modules. Great: Explicit strategy—objective + constraints + minimal relevant files + acceptance tests. Rolling summaries and context refresh checkpoints.' },
+    { q:'Explain the difference between "agentic AI" and conventional conversational AI. Give examples of scenarios for each.', e:'[Eng Dim 1] Average: Agentic is more autonomous. Good: Execution model difference—conversational answers; agentic plans and performs multi-step tool-driven tasks. Great: Explains control loop (plan-act-observe), failure modes, guardrails, scenario mapping.' },
+    { q:'What are the 3 most significant advances in AI coding in the past 6 months? How have they changed your daily work?', e:'[Eng Dim 1: Trends] Average: Generic with no impact. Good: Specific advances linked to workflow improvements. Great: Names concrete advances with before/after productivity patterns.' },
+    { q:'How do you stay current with AI coding tool developments? What sources do you regularly follow?', e:'[Eng Dim 1: Trends] Average: Social media. Good: Official docs, release notes, blogs. Great: Structured learning loop—weekly release digest, benchmark skepticism, internal experiments, shared team playbook updates.' },
+  ],
+  eng2: [
+    { q:'Describe a real engineering problem you solved using Claude Code or Cursor. Walk through your prompt approach and outcome.', e:'[Eng Dim 2: Hands-On] Average: Generic with no result. Good: Clear problem, structure, and outcome. Great: End-to-end narrative with constraints, iterations, validation, measurable impact (time saved, bugs reduced).' },
+    { q:'When using Claude Code for large-scale code refactoring, how do you structure your instructions? What techniques improve output quality?', e:'[Eng Dim 2] Average: "Ask it to refactor everything." Good: Phases with rules and standards. Great: Contract-style instruction—scope, non-goals, architecture constraints, migration sequence, test gates, rollback strategy.' },
+    { q:'In what scenarios does Claude Code produce unreliable output? What verification measures do you apply?', e:'[Eng Dim 2] Average: "Sometimes it hallucinates." Good: Risky cases identified with tests/review. Great: Risk tiers with safeguards per tier—property tests, static analysis, canary rollout, human approval checkpoints.' },
+    { q:'What elements do you consider essential in a good coding-focused prompt? Provide a real high-quality prompt example.', e:'[Eng Dim 2: Prompt Engineering] Average: "Be specific." Good: Context, goal, constraints, format. Great: Structured template—background, repo paths, acceptance criteria, non-goals, performance/security requirements, verification commands.' },
+    { q:'What is "Chain of Thought" prompting? When do you apply it in a backend development context?', e:'[Eng Dim 2: Prompt Engineering] Average: Step-by-step thinking. Good: Applies for debugging or algorithm design. Great: Uses reasoning scaffolds safely—explicit assumptions/checklists for incident triage and complex state-machine logic.' },
+    { q:'When AI output doesn\'t meet your expectations, how do you iterate on your prompt? Walk through your debugging thought process.', e:'[Eng Dim 2: Prompt Engineering] Average: Re-prompts randomly. Good: Refines scope and clarifies output. Great: Diagnoses failure class (missing context, ambiguous goal, impossible constraints), applies targeted edits, re-runs minimal validation.' },
+    { q:'How do you design prompts to ensure AI generates code conforming to your team\'s coding standards?', e:'[Eng Dim 2: Prompt Engineering] Average: "Follow standards." Good: Provides style guide and sample file patterns. Great: Embeds standards as enforceable constraints—lint rules, architecture boundaries, naming policy, asks AI to self-check before output.' },
+    { q:'Have you used CLAUDE.md project configuration? How did it improve your productivity?', e:'[Eng Dim 2] Average: Rarely uses it. Good: Project instructions for stack, lint/test commands, conventions. Great: Versioned team instructions with domain rules, review checklist, forbidden patterns, reducing variance across team.' },
+  ],
+  eng3: [
+    { q:'How do you leverage AI tools during the system design phase? What value does AI provide, and where are its limitations?', e:'[Eng Dim 3: Engineering Practices] Average: Generic architecture ideas. Good: Alternatives, tradeoffs, draft diagrams. Great: Structured challenger for requirements gaps and failure scenarios—final decisions human-owned.' },
+    { q:'Describe a complete process where you used AI to diagnose a production incident. At which step was AI most helpful?', e:'[Eng Dim 3] Average: Log summarization only. Good: Timeline—signal triage, hypothesis generation, query drafting. Great: Full incident workflow with AI-assisted hypothesis ranking and strict human validation before mitigations.' },
+    { q:'How would you integrate AI capabilities into a CI/CD pipeline? Any practical experience or concrete ideas?', e:'[Eng Dim 3] Average: Auto code review in CI. Good: PR summarization, risky-diff detection, test-gap suggestions. Great: Gated pipeline with non-blocking advisories, policy enforcement, audit logs, strict no-auto-merge on AI output.' },
+    { q:'What are common security risks in AI-generated code? How do you identify these during code review?', e:'[Eng Dim 3] Average: Secrets and injection. Good: Adds authz gaps, unsafe dependencies, weak error handling. Great: Secure-review checklist, SAST/DAST/dependency scanning, threat modeling, explicit security criteria in prompts.' },
+  ],
+  eng4: [
+    { q:'When using AI tools with company code, how do you protect sensitive information (API keys, internal business logic) from exposure?', e:'[Eng Dim 4: AI Safety] Average: Masking secrets only. Good: Redaction, private instances, access controls. Great: Data-classification policy, prompt sanitization pipeline, approved tool list, legal/security alignment on retention/training settings.' },
+    { q:'What level of responsibility should engineers take for AI-generated code? How do you establish accountability mechanisms?', e:'[Eng Dim 4] Average: AI is responsible for mistakes. Good: Engineer accountable for merged code. Great: Accountability framework—code owner sign-off, test evidence requirements, incident postmortem attribution to human decision points.' },
+    { q:'Are you aware of the "hallucination" risk in AI code generation? In which high-risk scenarios do you apply extra caution?', e:'[Eng Dim 4] Average: Acknowledges abstractly. Good: Caution in security and finance paths. Great: Defines high-risk zones (auth, payments, concurrency, compliance, migrations) with stricter verification protocols before release.' },
+    { q:'Is there a risk that company codebase data could be used to train AI vendor models? How would you discuss this with your team?', e:'[Eng Dim 4] Average: Unsure. Good: Understands policy differences. Great: Contract/technical controls explained (retention, training opt-out, tenant isolation), behavior aligned with approved settings, audited.' },
+  ],
+  eng5: [
+    { q:'If you were responsible for rolling out AI coding tools across your team, how would you design the adoption roadmap? How do you handle resistant team members?', e:'[Eng Dim 5: AI Leadership] Average: Mandates top-down. Good: Pilot, training, champions. Great: Phased rollout—opt-in pilots, measurable success criteria, risk controls, tailored enablement for skeptics.' },
+    { q:'How would you measure the impact of AI tool adoption on team engineering productivity? What metrics would you use?', e:'[Eng Dim 5] Average: Lines of code or PR count only. Good: Lead time, throughput, review latency. Great: Balanced scorecard—delivery speed, defect escape rate, reliability impact, engineer satisfaction, tool cost per delivered outcome.' },
+    { q:'How do you balance "letting AI do more" with keeping engineers\' core skills sharp? How do you prevent skill atrophy?', e:'[Eng Dim 5] Average: "Developers should just learn more." Good: Manual reviews and no-AI exercises. Great: Skill-retention system—rotation for deep-debug tasks, architecture reviews, incident drills, mandatory understanding checks before merge.' },
+    { q:'If a team member is over-relying on AI—committing code they don\'t understand—how would you handle it?', e:'[Eng Dim 5] Average: Public criticism without coaching. Good: Feedback requesting explanation in PR. Great: Coaching + guardrails—design rationale in PR template, pair review sessions, targeted learning plan with follow-up checkpoints.' },
+  ],
+  eng6: [
+    { q:'Describe the most complex consistency problem you\'ve encountered in distributed system design and how you resolved it. What did AI help with, and which parts required your own engineering judgment?', e:'[Eng Dim 6: Backend Core + AI] Look for: genuine distributed systems depth (CAP, saga, idempotency), plus specific articulation of where AI added value vs where human judgment was essential.' },
+    { q:'How do you combine AI tools to accelerate SQL or NoSQL query optimization? Walk through a specific example—what did AI suggest, did you adopt it fully, and why?', e:'[Eng Dim 6] Look for: depth in query analysis (N+1, index design, execution plans), critical evaluation of AI suggestions, and evidence of human validation before adopting.' },
+    { q:'When using AI to write database-related code, what specific risks do you watch for?', e:'[Eng Dim 6] Average: SQL injection only. Good: Missing indexes, transaction misuse. Great: Lock contention, N+1 queries, isolation anomalies, migration safety, backward compatibility, data correctness under retries.' },
+  ],
+};
+
+const QB_PM = {
+  pm1: [
+    { q:'How do you use AI tools to accelerate product discovery, user research synthesis, or PRD writing? Walk through your specific workflow.', e:'[PM AI Dim 1: Tool Usage] Average: "ChatGPT for writing." Good: Specific tools for specific tasks with workflow integration. Great: AI embedded across discovery-to-delivery—research synthesis, spec drafting, metric framing, stakeholder comms—with quality controls at each step.' },
+    { q:'Describe a product decision where AI-generated insights influenced your direction. How did you validate the AI output before acting on it?', e:'[PM AI Dim 1] Look for: judgment in distinguishing AI insight from AI noise, concrete validation step, and ability to articulate what human review added.' },
+    { q:'What is your framework for deciding when to use AI versus rely on your own analysis as a PM?', e:'[PM AI Dim 1] Average: "It depends." Good: Task-based heuristic (speed/clarity tasks to AI; judgment/strategy owned by PM). Great: Structured framework with risk-tiering—AI for breadth, human for depth on consequential decisions.' },
+    { q:'How do you prompt AI effectively to produce useful product artifacts (user stories, OKRs, competitive analyses)? Share a real example.', e:'[PM AI Dim 1: Prompt Eng for PM] Look for: structured prompt with context, constraints, audience, and format. Bonus: iteration behavior and quality checking.' },
+  ],
+  pm2: [
+    { q:'How do you stay current on AI product trends that are relevant to your domain? What was the last development that changed how you think about your roadmap?', e:'[PM AI Dim 2: Strategy] Look for: specific, domain-relevant trends with a clear point-of-view on roadmap implications, not just surface awareness.' },
+    { q:'How would you define a product strategy for an AI-native feature? What makes AI features fundamentally different to spec and build?', e:'[PM AI Dim 2] Look for: understanding of AI-specific challenges (non-determinism, evaluation, user trust, feedback loops) plus how these change spec and delivery approach.' },
+    { q:'Tell me about an AI feature or product capability you\'ve shipped or closely studied. What surprised you about building it?', e:'[PM AI Dim 2] Look for: genuine product depth—what the original assumption was, what the data showed, and how the PM adapted. Red flag: vague or hypothetical.' },
+  ],
+  pm3: [
+    { q:'As a PM, how do you think about AI safety and responsible AI in product decisions? Give a concrete example of a tradeoff you faced or would face.', e:'[PM AI Dim 3: Safety] Look for: genuine ethical reasoning applied to a product scenario—not just policy recitation. Strong candidates proactively consider user harm, explainability, and bias.' },
+    { q:'How do you build trust with engineering and data teams when advocating for AI-powered product decisions?', e:'[PM AI Dim 3] Look for: collaborative approach, technical literacy signalled through how they engage rather than what they know, and examples of earned trust. Red flag: "I just tell them what to build."' },
+    { q:'How do you evaluate whether an AI-generated output is good enough for users to see? What quality bar do you set, and who owns it?', e:'[PM AI Dim 3] Look for: quality framework with user-centric framing, clarity on ownership (PM vs. eng vs. data science), and concrete quality signals beyond "feels right".' },
+  ],
+  pm4: [
+    { q:'How would you build AI literacy within a product team that is skeptical or unfamiliar with AI? What does success look like in 6 months?', e:'[PM AI Leadership] Look for: structured enablement plan, specific metrics for literacy improvement, and empathy for where skepticism comes from.' },
+    { q:'At senior PM level, how do you shape the AI strategy for your product area? How do you align engineering, design, and leadership?', e:'[PM AI Leadership] Look for: cross-functional influence, ability to translate AI possibilities into business outcomes, and evidence of operating at the intersection of strategy and execution.' },
+  ],
+};
+
+/* ─── QUESTIONS ─── */
+function populateCandDrop() {
+  const s = document.getElementById('q-cand'), prev = s.value;
+  s.innerHTML = '<option value="">General / No specific candidate</option>' +
+    S.candidates.map(c => `<option value="${c.id}">${c.name} – ${c.role} (Score: ${c.overall})</option>`).join('');
+  if (prev) s.value = prev;
+}
+
+const QB = {
+  ai: [
+    { q:'Walk me through a project where you used an AI tool (ChatGPT, Copilot, Claude, etc.) to meaningfully accelerate your work. What was the tool, the workflow, and the measurable outcome?', e:'Look for: specific tool named, concrete workflow integration, quantifiable improvement. Red flag: vague or defensive response.' },
+    { q:'How do you decide which tasks to delegate to AI versus handle yourself? Give a recent example of that judgment call.', e:'Look for: a principled framework and evidence of AI as a default tool, not an afterthought.' },
+    { q:'Tell me about a time AI gave you wrong or misleading output. How did you catch it and what changed in your process?', e:'Look for: critical thinking, verification habits, constructive learning. Strong candidates have concrete examples.' },
+    { q:'What is the biggest unrealized AI opportunity in your domain? How would you pursue it?', e:'Look for: domain depth plus AI literacy, first-principles thinking about where AI creates real leverage.' },
+    { q:'How do you stay current with AI developments in your field? What was the last tool or paper that changed how you work?', e:'Look for: active learning habits, specific sources, recency of examples.' },
+    { q:'Describe a workflow you redesigned by embedding AI. What was the before and after, and what did your team have to change?', e:'Look for: systems thinking, change management skill, measurable impact on team efficiency.' },
+    { q:'Have you built, fine-tuned, or prompted an LLM for a business use case? Walk through the technical and business considerations.', e:'For Staff+: expect practical implementation experience, not just consumption. Look for depth.' },
+    { q:'How do you evaluate whether an AI tool is worth adopting versus a distraction?', e:'Look for: ROI-focused thinking balanced with genuine curiosity. Watch for hype or blanket skepticism.' },
+  ],
+  tech: [
+    { q:'Describe the most technically complex system you have built or led. What were the hardest architectural tradeoffs and how did you resolve them?', e:'Look for: genuine depth. Strong candidates move easily between high-level design and specific technical decisions.' },
+    { q:'Walk through how you would debug a production incident you have never seen before in a high-volume system.', e:'Look for: structured diagnostic approach, observability experience, calm under pressure.' },
+    { q:'Tell me about a time you pushed back on a technical approach from leadership. How did you build the case?', e:'Look for: technical confidence, data-driven communication, diplomatic assertiveness.' },
+    { q:'How do you balance technical debt with shipping velocity? Give a real example of a hard call.', e:'Look for: principled decision-making with a clear point of view and context-appropriate judgment.' },
+  ],
+  lead: [
+    { q:'Tell me about the largest cross-functional initiative you have led. How did you align teams with conflicting priorities and ensure delivery?', e:'Look for: structured program management, conflict resolution, executive communication at real scale.' },
+    { q:'Describe a time you had to rebuild trust with a stakeholder after something went wrong on your watch.', e:'Look for: ownership mentality, transparent communication, concrete repair actions, emotional intelligence.' },
+    { q:'How do you identify and develop high-potential talent on your team? Give a specific example.', e:'Look for: genuine investment in people, coaching mindset, tangible career growth outcomes.' },
+    { q:'At Staff or Principal level, how do you decide what to personally own versus delegate?', e:'Look for: strategic leverage thinking, trust in team, self-awareness about highest-value contributions.' },
+  ],
+  culture: [
+    { q:'OKX moves very fast — shipping and iterating in days, not quarters. Tell me about a time you thrived or struggled in a similar environment.', e:'Look for: genuine comfort with ambiguity and pace. Red flag: strong preference for long planning cycles.' },
+    { q:'What draws you specifically to OKX at this stage of crypto\'s development? What do you see that others might miss?', e:'Look for: genuine conviction and informed thesis. Strong candidates have a specific point of view on OKX\'s opportunity.' },
+    { q:'Tell me about a time you disagreed with a company direction but still committed to executing it well.', e:'Look for: ability to disagree and commit, constructive dissent, professional maturity.' },
+    { q:'How do you make major decisions when data is ambiguous or lagging?', e:'Look for: bias toward action, structured decision-making under uncertainty, comfort with measured risk.' },
+  ],
+  crypto: [
+    { q:'What is your thesis on where DeFi heads in the next two to three years, and how should OKX position?', e:'Look for: specific, opinionated answer. Vague optimism is a red flag. Expect protocol-level knowledge.' },
+    { q:'Walk me through how a specific on-chain mechanism works (AMM, lending protocol, perpetuals) and how you have used that knowledge in your work.', e:'Look for: genuine technical depth. Strong candidates connect mechanics to user and product implications.' },
+    { q:'How has the regulatory environment shaped your thinking about building crypto products?', e:'Look for: nuanced understanding of the regulatory landscape and ability to build effectively within constraints.' },
+  ],
+  katch_k: [
+    { q:'Walk me through the most complex professional challenge you have faced recently. How did you break it down, and what was your solution?', e:'[KATCH: Knowledge] Look for: structured thinking, domain expertise applied systematically, clear evidence of professional mastery not just experience.' },
+    { q:'How do you stay current in your field? Tell me about the last time new knowledge changed how you approached a problem at work.', e:'[KATCH: Knowledge] Look for: proactive continuous learning, specific examples, ability to translate new knowledge into execution.' },
+    { q:'Describe a situation where your technical expertise uncovered an issue others had missed. What was the impact?', e:'[KATCH: Knowledge] Look for: depth of expertise, accurate root cause identification, effective execution of the fix.' },
+  ],
+  katch_a: [
+    { q:'Tell me about a time you identified a market opportunity or business risk before others did. How did you act on it?', e:'[KATCH: Acumen] Look for: genuine market awareness, proactive insight, commercial impact of the action taken.' },
+    { q:'How have you contributed to business planning or strategic decisions in your current or last role?', e:'[KATCH: Acumen] Look for: involvement beyond own lane, understanding of P&L or growth dynamics, strategic vs. operational thinking.' },
+    { q:'Describe a product or initiative where you translated a customer insight into a measurable business outcome.', e:'[KATCH: Acumen] Look for: value creation chain from insight → action → result, with quantified outcome.' },
+  ],
+  katch_t: [
+    { q:'Tell me about a time you had to work with a team or stakeholder with very different priorities. How did you align?', e:'[KATCH: Teamwork] Look for: constructive communication, empathy, finding shared ground. Watch for blame or avoidance.' },
+    { q:'How do you give and receive feedback? Give me a specific example of each.', e:'[KATCH: Teamwork] Look for: candid and constructive delivery, openness to receiving criticism without defensiveness.' },
+    { q:'Describe a cross-functional project you led. How did you keep the team accountable to a shared goal?', e:'[KATCH: Teamwork] Look for: shared ownership structures, clear communication cadence, genuine team outcomes vs. solo wins.' },
+    { q:'For managers: How do you identify and develop high-potential talent? Give a specific example of someone you grew.', e:'[KATCH: Teamwork / Team Management] Look for: genuine investment in people, coaching actions, measurable career growth produced.' },
+  ],
+  katch_c: [
+    { q:'Walk me through a complex or ambiguous situation where you had to make a decision with incomplete data. What was your process?', e:'[KATCH: Cognition] Look for: structured reasoning, explicit framework for decision-making under uncertainty, comfort with ambiguity.' },
+    { q:'Tell me about a time your initial assessment of a problem turned out to be wrong. How did you course-correct?', e:'[KATCH: Cognition] Look for: intellectual honesty, ability to update beliefs, agility in changing direction.' },
+    { q:'Describe a situation where you had to choose between two equally valid solutions. What tipped your decision?', e:'[KATCH: Cognition] Look for: sound judgment, ability to articulate trade-offs, context-appropriate prioritisation.' },
+  ],
+  katch_h: [
+    { q:'Tell me about a time you pushed through a significant setback or failure. What kept you going, and what did you learn?', e:'[KATCH: Hunger / Resilience] Look for: genuine perseverance, ability to reframe failure, growth from adversity. Watch for rehearsed answers with no real difficulty.' },
+    { q:'Describe something you taught yourself in the last 12 months — professionally or personally — purely out of curiosity or drive.', e:'[KATCH: Hunger / Growth] Look for: intrinsic motivation, breadth of learning, evidence that the learning was applied.' },
+    { q:'Tell me about a time you identified an improvement or innovation and drove it forward without being asked.', e:'[KATCH: Hunger / Innovation] Look for: proactive initiative, ability to influence without authority, tangible outcome from the self-driven effort.' },
+  ],
+};
+
+function genQuestions() {
+  const cid   = document.getElementById('q-cand').value;
+  const cand  = cid ? S.candidates.find(c => c.id == cid) : null;
+  const count = parseInt(document.getElementById('q-count').value);
+  const notes = document.getElementById('q-notes').value.trim();
+
+  let pool = [];
+  if (document.getElementById('f-ai').checked)      pool.push(...QB.ai.map(q => ({...q, cat:'ai'})));
+  if (document.getElementById('f-tech').checked)    pool.push(...QB.tech.map(q => ({...q, cat:'tech'})));
+  if (document.getElementById('f-lead').checked)    pool.push(...QB.lead.map(q => ({...q, cat:'leadership'})));
+  if (document.getElementById('f-culture').checked) pool.push(...QB.culture.map(q => ({...q, cat:'culture'})));
+  if (document.getElementById('f-crypto').checked)  pool.push(...QB.crypto.map(q => ({...q, cat:'crypto'})));
+  if (document.getElementById('f-kK').checked)      pool.push(...QB.katch_k.map(q => ({...q, cat:'katch_k'})));
+  if (document.getElementById('f-kA').checked)      pool.push(...QB.katch_a.map(q => ({...q, cat:'katch_a'})));
+  if (document.getElementById('f-kT').checked)      pool.push(...QB.katch_t.map(q => ({...q, cat:'katch_t'})));
+  if (document.getElementById('f-kC').checked)      pool.push(...QB.katch_c.map(q => ({...q, cat:'katch_c'})));
+  if (document.getElementById('f-kH').checked)      pool.push(...QB.katch_h.map(q => ({...q, cat:'katch_h'})));
+  // Engineering dimensions
+  if (document.getElementById('f-eng1')?.checked)   pool.push(...QB_ENG.eng1.map(q => ({...q, cat:'eng1'})));
+  if (document.getElementById('f-eng2')?.checked)   pool.push(...QB_ENG.eng2.map(q => ({...q, cat:'eng2'})));
+  if (document.getElementById('f-eng3')?.checked)   pool.push(...QB_ENG.eng3.map(q => ({...q, cat:'eng3'})));
+  if (document.getElementById('f-eng4')?.checked)   pool.push(...QB_ENG.eng4.map(q => ({...q, cat:'eng4'})));
+  if (document.getElementById('f-eng5')?.checked)   pool.push(...QB_ENG.eng5.map(q => ({...q, cat:'eng5'})));
+  if (document.getElementById('f-eng6')?.checked)   pool.push(...QB_ENG.eng6.map(q => ({...q, cat:'eng6'})));
+  // PM dimensions
+  if (document.getElementById('f-pm1')?.checked)    pool.push(...QB_PM.pm1.map(q => ({...q, cat:'pm1'})));
+  if (document.getElementById('f-pm2')?.checked)    pool.push(...QB_PM.pm2.map(q => ({...q, cat:'pm2'})));
+  if (document.getElementById('f-pm3')?.checked)    pool.push(...QB_PM.pm3.map(q => ({...q, cat:'pm3'})));
+  if (document.getElementById('f-pm4')?.checked)    pool.push(...QB_PM.pm4.map(q => ({...q, cat:'pm4'})));
+  if (!pool.length) { toast('Select at least one focus area', true); return; }
+
+  pool = pool.sort(() => Math.random() - .5);
+  const catMax = {
+    ai: Math.ceil(count * .28), tech: Math.ceil(count * .22), leadership: Math.ceil(count * .22), culture: Math.ceil(count * .20), crypto: Math.ceil(count * .18),
+    katch_k: Math.ceil(count * .14), katch_a: Math.ceil(count * .14), katch_t: Math.ceil(count * .14), katch_c: Math.ceil(count * .14), katch_h: Math.ceil(count * .14),
+    eng1: Math.ceil(count * .20), eng2: Math.ceil(count * .28), eng3: Math.ceil(count * .18), eng4: Math.ceil(count * .14), eng5: Math.ceil(count * .12), eng6: Math.ceil(count * .12),
+    pm1: Math.ceil(count * .22), pm2: Math.ceil(count * .20), pm3: Math.ceil(count * .18), pm4: Math.ceil(count * .14),
+  };
+  const catCnt = {}, sel = [];
+  for (const q of pool) { if (sel.length >= count) break; catCnt[q.cat] = catCnt[q.cat] || 0; if (catCnt[q.cat] < (catMax[q.cat] || 3)) { sel.push(q); catCnt[q.cat]++; } }
+  for (const q of pool) { if (sel.length >= count || sel.includes(q)) continue; sel.push(q); }
+  const final = sel.slice(0, count);
+  S.qPacks++;
+
+  const catL = {
+    ai:'AI Nativeness', tech:'Technical', leadership:'Leadership', culture:'OKX Culture', crypto:'Crypto / Web3',
+    katch_k:'KATCH: Knowledge', katch_a:'KATCH: Acumen', katch_t:'KATCH: Teamwork', katch_c:'KATCH: Cognition', katch_h:'KATCH: Hunger',
+    eng1:'Eng: AI Tools & Trends', eng2:'Eng: Claude Code / Prompts', eng3:'Eng: AI Engineering', eng4:'Eng: AI Safety', eng5:'Eng: AI Leadership', eng6:'Eng: Backend Core',
+    pm1:'PM: AI Tool Workflow', pm2:'PM: AI Product Strategy', pm3:'PM: AI Judgment & Safety', pm4:'PM: AI Leadership',
+  };
+  const catB = {
+    ai:'badge-purple', tech:'badge-blue', leadership:'badge-amber', culture:'badge-green', crypto:'badge-amber',
+    katch_k:'badge-blue', katch_a:'badge-blue', katch_t:'badge-blue', katch_c:'badge-blue', katch_h:'badge-blue',
+    eng1:'badge-green', eng2:'badge-green', eng3:'badge-green', eng4:'badge-red', eng5:'badge-green', eng6:'badge-green',
+    pm1:'badge-purple', pm2:'badge-purple', pm3:'badge-red', pm4:'badge-purple',
+  };
+  document.getElementById('q-panel-title').textContent = cand ? 'Interview Pack: ' + cand.name : 'Interview Pack';
+
+  document.getElementById('q-output').innerHTML = `
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px;">
+      <div>
+        <div style="font-size:15px;font-weight:600;color:var(--text);">${cand ? cand.name + ' — ' + cand.role : 'General Interview Pack'}</div>
+        <div style="font-size:13px;color:var(--text3);">${document.getElementById('q-stage').value} · ${final.length} questions</div>
+      </div>
+      <div style="display:flex;gap:7px;">
+        <button class="btn btn-ghost btn-sm" onclick="cpyQs()">Copy All</button>
+        <button class="btn btn-ghost btn-sm" onclick="window.print()">Print</button>
+      </div>
+    </div>
+
+    ${cand ? `<div style="background:rgba(124,58,237,.07);border:1px solid rgba(124,58,237,.18);border-radius:8px;padding:14px;margin-bottom:16px;">
+      <div style="font-size:12px;font-weight:700;color:var(--purple);letter-spacing:.5px;margin-bottom:10px;">AI NATIVENESS PROFILE — ${cand.name.toUpperCase()}</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;font-size:14px;">
+        <div><div style="color:var(--text3);font-size:11px;font-weight:700;letter-spacing:.4px;margin-bottom:2px;">TOOL USE</div><div style="font-weight:700;color:var(--purple);font-size:18px;">${cand.aiTool}/5</div></div>
+        <div><div style="color:var(--text3);font-size:11px;font-weight:700;letter-spacing:.4px;margin-bottom:2px;">MINDSET</div><div style="font-weight:700;color:var(--purple);font-size:18px;">${cand.aiMind}/5</div></div>
+        <div><div style="color:var(--text3);font-size:11px;font-weight:700;letter-spacing:.4px;margin-bottom:2px;">DEPTH</div><div style="font-weight:700;color:var(--purple);font-size:18px;">${cand.aiDepth}/5</div></div>
+        <div><div style="color:var(--text3);font-size:11px;font-weight:700;letter-spacing:.4px;margin-bottom:2px;">IMPACT</div><div style="font-weight:700;color:var(--purple);font-size:18px;">${cand.aiImpact}/5</div></div>
+      </div>
+      ${cand.gaps.length ? `<div style="margin-top:10px;font-size:13.5px;"><span style="color:var(--text3);">Areas to probe: </span><span style="color:var(--text2);">${cand.gaps.join(' · ')}</span></div>` : ''}
+    </div>` : ''}
+
+    ${notes ? `<div style="background:var(--yellow-dim);border:1px solid var(--yellow-mid);border-radius:7px;padding:12px;margin-bottom:14px;font-size:14px;color:var(--text);">Notes: ${notes}</div>` : ''}
+
+    ${final.map((q, i) => `<div class="q-card">
+      <div class="q-meta">
+        <span class="q-num">Q${i + 1}</span>
+        <span class="badge ${catB[q.cat]}">${catL[q.cat]}</span>
+        ${q.cat === 'ai' && cand && cand.aiScore < 50 ? '<span class="badge badge-red">Gap Area</span>' : ''}
+      </div>
+      <div class="q-text">${q.q}</div>
+      <div class="q-eval"><strong style="color:var(--blue);">Evaluation guide: </strong>${q.e}</div>
+    </div>`).join('')}
+
+    <div style="margin-top:16px;padding:16px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;font-size:14px;color:var(--text3);line-height:1.65;">
+      <strong style="color:var(--text2);">Scorecard reminder:</strong> Rate each answer 1–5. AI Nativeness questions are weighted 2× for ${S.jd.level || 'Staff+'} roles. A total of 35 or more out of 50 is a strong pass.
+    </div>`;
+
+  toast(final.length + ' questions generated successfully');
+}
+
+function cpyQs() {
+  const qs = Array.from(document.querySelectorAll('.q-text')).map((el, i) => `Q${i+1}: ${el.textContent}`).join('\n\n');
+  safeCopy(qs, null);
+  toast('Questions copied to clipboard');
+}
+
+/* ─── KATCH ─── */
+function renderKatch() {
+  const el = document.getElementById('katch-cand-table');
+  if (!S.candidates.length) {
+    el.innerHTML = `<div class="empty" style="padding:24px 0;"><div class="empty-ico">K</div><div class="empty-txt">Run AI Screening first to see KATCH scores</div></div>`;
+    return;
+  }
+  const sorted = [...S.candidates].sort((a, b) => b.katchScore - a.katchScore);
+  el.innerHTML = `<table class="gh-table" style="width:100%;">
+    <thead><tr>
+      <th>Candidate</th>
+      <th style="text-align:center;" title="Knowledge">K</th>
+      <th style="text-align:center;" title="Acumen">A</th>
+      <th style="text-align:center;" title="Teamwork">T</th>
+      <th style="text-align:center;" title="Cognition">C</th>
+      <th style="text-align:center;" title="Hunger">H</th>
+      <th>KATCH Total</th>
+    </tr></thead>
+    <tbody>${sorted.map(c => {
+      const sc = v => v >= 4 ? 'color:var(--green);font-weight:700;' : v >= 3 ? 'color:var(--amber);font-weight:600;' : 'color:var(--red);font-weight:600;';
+      return `<tr onclick="openMod(${c.id})" style="cursor:pointer;">
+        <td>
+          <div style="display:flex;align-items:center;gap:9px;">
+            <div class="av" style="width:30px;height:30px;font-size:11px;">${c.ini}</div>
+            <div>
+              <div style="font-weight:600;font-size:14px;">${c.name}</div>
+              <div style="font-size:12px;color:var(--text3);">${c.role}</div>
+            </div>
+          </div>
+        </td>
+        <td style="text-align:center;font-size:16px;${sc(c.kK)}">${c.kK}</td>
+        <td style="text-align:center;font-size:16px;${sc(c.kA)}">${c.kA}</td>
+        <td style="text-align:center;font-size:16px;${sc(c.kT)}">${c.kT}</td>
+        <td style="text-align:center;font-size:16px;${sc(c.kC)}">${c.kC}</td>
+        <td style="text-align:center;font-size:16px;${sc(c.kH)}">${c.kH}</td>
+        <td>
+          <div style="font-size:15px;font-weight:700;color:var(--blue);">${c.katchScore}/100</div>
+          <div class="prog" style="width:80px;margin-top:4px;"><div class="prog-fill" style="width:${c.katchScore}%;background:var(--blue);"></div></div>
+        </td>
+      </tr>`;
+    }).join('')}</tbody>
+  </table>`;
+}
+
+/* ─── DASHBOARD ─── */
+function renderDash() {
+  const t = S.candidates.length, sh = S.candidates.filter(c => c.overall >= 80).length;
+  const avg = t ? Math.round(S.candidates.reduce((s, c) => s + c.aiScore, 0) / t) : 0;
+  document.getElementById('d-total').textContent = t;
+  document.getElementById('d-short').textContent = sh;
+  document.getElementById('d-ai').textContent    = t ? avg + '/100' : '–';
+  document.getElementById('d-packs').textContent = S.qPacks;
+
+  const avgK = t ? Math.round(S.candidates.reduce((s, c) => s + c.katchScore, 0) / t) : 0;
+  document.getElementById('d-katch').textContent    = t ? avgK + '/100' : '–';
+  document.getElementById('d-k4').textContent       = S.candidates.filter(c => c.kK >= 4).length;
+  document.getElementById('d-h4').textContent       = S.candidates.filter(c => c.kH >= 4).length;
+  document.getElementById('d-fullkatch').textContent = S.candidates.filter(c => c.katchScore >= 75).length;
+
+  const topEl = document.getElementById('d-top');
+  topEl.innerHTML = t ? [...S.candidates].sort((a, b) => b.overall - a.overall).slice(0, 5).map((c, i) => `
+    <div style="display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--border);">
+      <div style="font-size:15px;font-weight:700;color:var(--border2);width:22px;">${i+1}</div>
+      <div class="av" style="width:32px;height:32px;font-size:12px;">${c.ini}</div>
+      <div style="flex:1;">
+        <div style="font-weight:600;font-size:14.5px;color:var(--text);">${c.name}</div>
+        <div style="font-size:12.5px;color:var(--text3);">${c.role}</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:17px;font-weight:700;color:${sCol(c.overall)};">${c.overall}</div>
+        <div style="font-size:11.5px;color:var(--purple);">AI ${c.aiScore}</div>
+      </div>
+    </div>`).join('')
+  : `<div class="empty" style="padding:20px 0;"><div class="empty-txt">No candidates screened yet</div></div>`;
+
+  const distEl = document.getElementById('d-dist');
+  distEl.innerHTML = t ? [
+    { l:'AI Native (80–100)',     min:80, max:100, c:'var(--green)' },
+    { l:'AI Proficient (60–79)', min:60, max:79,  c:'var(--blue)' },
+    { l:'Developing (40–59)',    min:40, max:59,  c:'var(--amber)' },
+    { l:'Limited (below 40)',    min:0,  max:39,  c:'var(--red)' },
+  ].map(ti => {
+    const cnt = S.candidates.filter(c => c.aiScore >= ti.min && c.aiScore <= ti.max).length;
+    const pct = Math.round(cnt / t * 100);
+    return `<div style="margin-bottom:14px;">
+      <div style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:5px;">
+        <span>${ti.l}</span><span style="color:var(--text3);">${cnt} candidates (${pct}%)</span>
+      </div>
+      <div class="prog" style="height:9px;"><div class="prog-fill" style="width:${pct}%;background:${ti.c};"></div></div>
+    </div>`;
+  }).join('')
+  : `<div class="empty" style="padding:20px 0;"><div class="empty-txt">Screen candidates to see breakdown</div></div>`;
+}
+
+/* ─── EXPORT ─── */
+function exportCSV() {
+  if (!S.candidates.length) { toast('No results to export yet', true); return; }
+  const rows = [
+    ['Rank','Name','Role','Company','YOE','Overall','JD Match','AI Score','AI Tool','AI Mindset','AI Depth','AI Impact','KATCH Score','K-Knowledge','A-Acumen','T-Teamwork','C-Cognition','H-Hunger','Recommended'],
+    ...S.candidates.map((c, i) => [i+1, c.name, c.role, c.company, c.yoe, c.overall, c.jdMatch, c.aiScore, c.aiTool, c.aiMind, c.aiDepth, c.aiImpact, c.katchScore, c.kK, c.kA, c.kT, c.kC, c.kH, c.recommended ? 'Yes' : 'No'])
+  ];
+  const csv = rows.map(r => r.map(v => `"${v}"`).join(',')).join('\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+  a.download = `OKX_Screening_${S.jd.title.replace(/\s+/g, '_') || 'Results'}.csv`;
+  a.click();
+  toast('CSV exported successfully');
+}
+
+/* ─── RUBRIC SLIDERS ─── */
+function updR() { ['tool','mindset','depth','impact'].forEach(k => { document.getElementById('rv-'+k).textContent = document.getElementById('r-'+k).value; }); }
+
+/* ─── TOAST ─── */
+function toast(msg, isErr=false) {
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.className = 'toast ' + (isErr ? 'err' : 'ok'); el.classList.add('show');
+  clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove('show'), 3200);
+}
+</script>
+
+
+</body></html>
