@@ -1,6 +1,8 @@
-<html lang="en"><head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
 <title>OKX TA · Hiring Platform</title>
 <style>
 /* ─────────────────────────────────────────
@@ -500,19 +502,19 @@ button, .nav-item, .katch-scale-row, .stage, a {
 <div id="iab-banner">
   <strong>⚠️ Open in your browser for full functionality</strong>
   WhatsApp / Lark's built-in browser blocks some features. Tap below to open properly.
-  <br>
+  <br/>
   <button onclick="window.open(window.location.href,'_blank')">Open in Browser ↗</button>
   <button onclick="document.getElementById('iab-banner').style.display='none'" style="background:transparent;color:#aaa;border:1px solid #444;margin-left:8px;">Dismiss</button>
 </div>
 
 <!-- MOBILE BOTTOM NAV -->
 <nav id="mobile-nav">
-  <button onclick="goView('upload')" class="active"><span class="mn-icon">+</span>Upload</button>
-  <button onclick="goView('candidates')"><span class="mn-icon">≡</span>Candidates</button>
-  <button onclick="goView('interview')"><span class="mn-icon">?</span>Questions</button>
-  <button onclick="goView('katch')"><span class="mn-icon">K</span>KATCH</button>
-  <button onclick="goView('sourcing')"><span class="mn-icon">⌖</span>Sourcing</button>
-  <button onclick="goView('dashboard')"><span class="mn-icon">◈</span>Dashboard</button>
+  <button onclick="goView('upload')"     class="active"><span class="mn-icon">+</span>Upload</button>
+  <button onclick="goView('candidates')"          ><span class="mn-icon">≡</span>Candidates</button>
+  <button onclick="goView('interview')"           ><span class="mn-icon">?</span>Questions</button>
+  <button onclick="goView('katch')"               ><span class="mn-icon">K</span>KATCH</button>
+  <button onclick="goView('sourcing')"            ><span class="mn-icon">⌖</span>Sourcing</button>
+  <button onclick="goView('dashboard')"           ><span class="mn-icon">◈</span>Dashboard</button>
 </nav>
 
 <!-- SIDEBAR OVERLAY (mobile) -->
@@ -567,69 +569,46 @@ button, .nav-item, .katch-scale-row, .stage, a {
   <div class="sidebar-footer">
     <div class="sidebar-role">TA Partner</div>
     <div class="sidebar-user">Louisa Lo</div>
-    <button onclick="openShareModal()" style="margin-top: 10px; width: 100%; padding: 7px 0px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; color: rgb(255, 255, 255); font-size: 12px; font-weight: 600; cursor: pointer; letter-spacing: 0.3px; transition: background 0.15s;" onmouseenter="this.style.background='rgba(255,255,255,0.16)'" onmouseleave="this.style.background='rgba(255,255,255,0.08)'">↗ Share Tool</button>
+    <button onclick="openShareModal()" style="margin-top:10px;width:100%;padding:7px 0;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:6px;color:#fff;font-size:12px;font-weight:600;cursor:pointer;letter-spacing:.3px;transition:background .15s;" onmouseenter="this.style.background='rgba(255,255,255,0.16)'" onmouseleave="this.style.background='rgba(255,255,255,0.08)'">↗ Share Link</button>
   </div>
 </aside>
 
 <!-- SHARE MODAL -->
-<div id="share-modal" style="display: flex; position: fixed; inset: 0px; background: rgba(0, 0, 0, 0.5); z-index: 9999; align-items: center; justify-content: center;">
-  <div style="background:#fff;border-radius:14px;width:min(520px,94vw);max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);">
+<div id="share-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;align-items:center;justify-content:center;padding:16px;">
+  <div style="background:#fff;border-radius:16px;width:min(460px,100%);box-shadow:0 24px 64px rgba(0,0,0,.3);overflow:hidden;">
+
     <!-- Header -->
-    <div style="display:flex;justify-content:space-between;align-items:center;padding:20px 24px 0;">
-      <div>
-        <div style="font-weight:800;font-size:17px;">Share this tool</div>
-        <div style="font-size:12.5px;color:#666;margin-top:2px;">Send to your team via Lark or WhatsApp</div>
-      </div>
-      <button onclick="closeShareModal()" style="background:none;border:none;font-size:22px;cursor:pointer;color:#666;line-height:1;">×</button>
+    <div style="background:#000;padding:20px 22px 18px;position:relative;">
+      <div style="font-weight:800;font-size:17px;color:#fff;">↗ Share OKX TA Tool</div>
+      <div style="font-size:12px;color:#888;margin-top:3px;">Paste the link in WhatsApp, Lark, or anywhere</div>
+      <button onclick="closeShareModal()" style="position:absolute;top:16px;right:18px;background:rgba(255,255,255,0.12);border:none;color:#fff;width:28px;height:28px;border-radius:50%;font-size:16px;cursor:pointer;line-height:1;display:flex;align-items:center;justify-content:center;">×</button>
     </div>
 
-    <div style="padding:20px 24px;display:flex;flex-direction:column;gap:16px;">
+    <div style="padding:22px;display:flex;flex-direction:column;gap:14px;">
 
-      <!-- Option 1: Download -->
-      <div style="border:1px solid #e8e8e8;border-radius:10px;padding:16px;">
-        <div style="font-weight:700;font-size:13.5px;margin-bottom:4px;">1 — Download the file</div>
-        <div style="font-size:12px;color:#666;margin-bottom:12px;">Save the HTML file, then send it directly in Lark or WhatsApp. Recipients open it in any browser — no install needed.</div>
-        <button onclick="shareDownload()" style="width:100%;padding:9px;background:#000;color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;">⬇ Download OKX TA Hiring Tool</button>
-      </div>
-
-      <!-- Option 2: Lark message -->
-      <div style="border:1px solid #e8e8e8;border-radius:10px;padding:16px;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-          <div style="font-weight:700;font-size:13.5px;">2 — Copy Lark message</div>
-          <span style="font-size:10.5px;background:#1a7a45;color:#fff;padding:2px 7px;border-radius:10px;">Lark</span>
+      <!-- URL input + copy -->
+      <div>
+        <div style="font-size:11px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;">Your shareable link</div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <input id="share-url-input" type="text" value="Paste your Netlify URL here" onclick="this.select()"
+            style="flex:1;padding:10px 12px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:13px;color:#000;background:#f7f7f7;outline:none;"/>
+          <button onclick="copyShareUrl(this)" style="padding:10px 16px;background:#000;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">Copy</button>
         </div>
-        <div style="font-size:12px;color:#666;margin-bottom:12px;">Copy a ready-made Lark message — attach the downloaded file alongside it.</div>
-        <pre id="lark-msg" style="font-size:12px;line-height:1.65;background:#f7f7f7;border:1px solid #e8e8e8;border-radius:7px;padding:12px;white-space:pre-wrap;color:#333;font-family:inherit;margin-bottom:10px;">👋 Hey team! Sharing our OKX TA Hiring Platform — a single-file tool built to speed up our screening and sourcing workflow.
-
-✅ CV screening with AI + KATCH scoring
-✅ Interview question generator (Eng / PM / General)
-✅ Sourcing Copilot — Boolean strings, target companies &amp; InMail drafts
-✅ Pipeline dashboard
-
-📎 File attached — just open in any browser, no install needed.
-
-Built for OKX TA. Questions? Ping me here 🙂</pre>
-        <button onclick="copyShareMsg('lark-msg', this)" style="width:100%;padding:8px;background:#f0f0f0;color:#000;border:none;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;">Copy Lark Message</button>
+        <div style="font-size:11.5px;color:#888;margin-top:7px;">Don't have a link yet? <strong style="color:#000;">Drag the file to <a href="https://app.netlify.com/drop" target="_blank" style="color:#0050b3;">netlify.com/drop</a></strong> — takes 30 sec, gives a free permanent link.</div>
       </div>
 
-      <!-- Option 3: WhatsApp message -->
-      <div style="border:1px solid #e8e8e8;border-radius:10px;padding:16px;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-          <div style="font-weight:700;font-size:13.5px;">3 — Copy WhatsApp message</div>
-          <span style="font-size:10.5px;background:#25d366;color:#fff;padding:2px 7px;border-radius:10px;">WhatsApp</span>
-        </div>
-        <div style="font-size:12px;color:#666;margin-bottom:12px;">Copy a shorter message for WhatsApp — send the file as an attachment alongside it.</div>
-        <pre id="wa-msg" style="font-size:12px;line-height:1.65;background:#f7f7f7;border:1px solid #e8e8e8;border-radius:7px;padding:12px;white-space:pre-wrap;color:#333;font-family:inherit;margin-bottom:10px;">Hey! Sharing the OKX TA Hiring Tool 🚀
+      <hr style="border:none;border-top:1px solid #eee;"/>
 
-It's a single HTML file — open in browser, no setup needed. Covers CV screening, KATCH scoring, interview packs and sourcing.
-
-File attached 👆 Let me know if you have questions!</pre>
-        <button onclick="copyShareMsg('wa-msg', this)" style="width:100%;padding:8px;background:#f0f0f0;color:#000;border:none;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;">Copy WhatsApp Message</button>
+      <!-- Ready-made messages -->
+      <div>
+        <div style="font-size:11px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;">Ready-made message to send</div>
+        <pre id="share-msg-text" style="font-size:12.5px;line-height:1.7;background:#f7f7f7;border:1px solid #e8e8e8;border-radius:8px;padding:13px 14px;white-space:pre-wrap;color:#222;font-family:inherit;margin-bottom:10px;"></pre>
+        <button onclick="copyShareMsg('share-msg-text', this)" style="width:100%;padding:9px;background:#f0f0f0;color:#000;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">Copy Message</button>
       </div>
 
-      <!-- Tip -->
-      <div style="padding:11px 14px;background:#fffbe6;border:1px solid #ffe58f;border-radius:8px;font-size:12px;color:#7a5800;">
-        <strong>💡 Pro tip:</strong> In Lark, you can pin the HTML file in a group chat so everyone always has the latest version. In WhatsApp, drop it into your TA group and pin the message.
+      <!-- Open in browser tip -->
+      <div style="padding:11px 14px;background:#e8f4fd;border-radius:8px;font-size:12px;color:#0050b3;line-height:1.6;">
+        <strong>📱 Mobile tip:</strong> If the link opens inside WhatsApp or Lark's built-in browser and looks broken, tap the <strong>⋯ menu → Open in Chrome / Safari</strong>. The tool works fully in any real browser.
       </div>
 
     </div>
@@ -644,7 +623,7 @@ File attached 👆 Let me know if you have questions!</pre>
     <button id="mob-menu-btn" onclick="openMobileSidebar()" aria-label="Menu">☰</button>
     <div class="topbar-left">
       <div class="topbar-bc" id="breadcrumb">OKX Hiring <span class="topbar-sep">›</span> Upload CVs</div>
-      <div class="topbar-title" id="topbar-title">Upload CVs &amp; Job Description</div>
+      <div class="topbar-title" id="topbar-title">Upload CVs & Job Description</div>
     </div>
     <div class="topbar-actions" id="topbar-actions">
       <button class="btn btn-primary btn-sm" onclick="runScreen()">Run AI Screening</button>
@@ -662,14 +641,14 @@ File attached 👆 Let me know if you have questions!</pre>
             <div class="f-group" style="background:rgba(0,80,179,.04);border:1px solid rgba(0,80,179,.15);border-radius:7px;padding:12px 14px;margin-bottom:14px;">
               <label class="f-label" style="color:var(--blue);">Greenhouse Job Link (optional)</label>
               <div style="display:flex;gap:8px;align-items:center;">
-                <input class="f-input" id="gh-link" placeholder="https://app.greenhouse.io/sdash/..." style="margin-bottom:0;flex:1;" oninput="tryParseGH(this.value)">
+                <input class="f-input" id="gh-link" placeholder="https://app.greenhouse.io/sdash/..."  style="margin-bottom:0;flex:1;" oninput="tryParseGH(this.value)"/>
                 <button class="btn btn-secondary btn-sm" onclick="tryParseGH(document.getElementById('gh-link').value)" style="flex-shrink:0;">Import</button>
               </div>
               <div style="font-size:12px;color:var(--text3);margin-top:6px;">Paste a Greenhouse job URL to auto-fill role title, team and level. Full API integration requires Greenhouse API key — contact your TA Ops team.</div>
             </div>
             <div class="f-group">
               <label class="f-label">Role Title</label>
-              <input class="f-input" id="jd-title" placeholder="e.g. Senior PM – Web3 Growth">
+              <input class="f-input" id="jd-title" placeholder="e.g. Senior PM – Web3 Growth"/>
             </div>
             <div class="f-row">
               <div class="f-group" style="margin-bottom:0;">
@@ -678,13 +657,13 @@ File attached 👆 Let me know if you have questions!</pre>
                   <option value="">Select team...</option>
                   <option>Technology / Engineering</option>
                   <option>Product Management</option>
-                  <option>Growth &amp; Marketing</option>
+                  <option>Growth & Marketing</option>
                   <option>Data Science / Analytics</option>
-                  <option>Compliance &amp; Legal</option>
-                  <option>Finance &amp; Strategy</option>
+                  <option>Compliance & Legal</option>
+                  <option>Finance & Strategy</option>
                   <option>Business Development</option>
                   <option>Operations</option>
-                  <option>People &amp; HR</option>
+                  <option>People & HR</option>
                   <option>Design / UX</option>
                 </select>
               </div>
@@ -706,17 +685,17 @@ File attached 👆 Let me know if you have questions!</pre>
             </div>
             <div class="f-group">
               <label class="f-label">Must-Have Keywords (comma separated)</label>
-              <input class="f-input" id="jd-keywords" placeholder="e.g. DeFi, Web3, SQL, AI tools">
+              <input class="f-input" id="jd-keywords" placeholder="e.g. DeFi, Web3, SQL, AI tools"/>
             </div>
           </div>
 
           <div class="card-sm">
             <div class="panel-title">Quick JD Templates</div>
             <div style="display:flex;flex-direction:column;gap:7px;">
-              <button class="btn btn-ghost btn-sm" onclick="loadT('pm')" style="justify-content:flex-start;">Senior PM – Web3 / DeFi</button>
-              <button class="btn btn-ghost btn-sm" onclick="loadT('eng')" style="justify-content:flex-start;">Staff Engineer – Backend</button>
+              <button class="btn btn-ghost btn-sm" onclick="loadT('pm')"   style="justify-content:flex-start;">Senior PM – Web3 / DeFi</button>
+              <button class="btn btn-ghost btn-sm" onclick="loadT('eng')"  style="justify-content:flex-start;">Staff Engineer – Backend</button>
               <button class="btn btn-ghost btn-sm" onclick="loadT('data')" style="justify-content:flex-start;">Principal Data Scientist</button>
-              <button class="btn btn-ghost btn-sm" onclick="loadT('biz')" style="justify-content:flex-start;">Director – Business Development</button>
+              <button class="btn btn-ghost btn-sm" onclick="loadT('biz')"  style="justify-content:flex-start;">Director – Business Development</button>
             </div>
           </div>
         </div>
@@ -725,7 +704,7 @@ File attached 👆 Let me know if you have questions!</pre>
           <div class="card" style="margin-bottom:16px;">
             <div class="panel-title">CV Files</div>
             <div class="upload-zone" id="drop-zone">
-              <input type="file" id="cv-input" accept=".pdf,.doc,.docx,.txt" multiple="">
+              <input type="file" id="cv-input" accept=".pdf,.doc,.docx,.txt" multiple/>
               <div class="upload-icon">↑</div>
               <div class="upload-title">Drop CVs here or click to browse</div>
               <div class="upload-sub">PDF · DOC · DOCX · TXT &nbsp;·&nbsp; Batch upload supported</div>
@@ -857,7 +836,7 @@ File attached 👆 Let me know if you have questions!</pre>
           <div class="sec-sub" id="cand-sub">AI-ranked against your job description</div>
         </div>
         <div class="sec-acts">
-          <input class="f-input" id="search-box" placeholder="Search name or company..." style="width:210px;padding:8px 12px;font-size:13.5px;" oninput="renderTable()">
+          <input class="f-input" id="search-box" placeholder="Search name or company..." style="width:210px;padding:8px 12px;font-size:13.5px;" oninput="renderTable()"/>
           <button class="btn btn-secondary btn-sm" onclick="goView('compare')">Compare Selected</button>
           <button class="btn btn-ghost btn-sm" onclick="exportCSV()">Export CSV</button>
         </div>
@@ -867,7 +846,7 @@ File attached 👆 Let me know if you have questions!</pre>
         <table class="gh-table" id="cand-table">
           <thead>
             <tr>
-              <th style="width:40px;"><input type="checkbox" id="chk-all" onchange="toggleAll(this)"></th>
+              <th style="width:40px;"><input type="checkbox" id="chk-all" onchange="toggleAll(this)"/></th>
               <th>Candidate</th>
               <th>Current Role</th>
               <th onclick="sortBy('overall',event)" style="cursor:pointer;">Overall <span class="sort-arrow" data-col="overall">▼</span></th>
@@ -942,33 +921,33 @@ File attached 👆 Let me know if you have questions!</pre>
           <div class="f-group">
             <label class="f-label">Focus Areas</label>
             <div style="display:flex;flex-direction:column;gap:9px;margin-top:4px;">
-              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-ai"> AI Nativeness &amp; Tool Usage</label>
-              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-tech"> Technical / Domain Depth</label>
-              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-lead"> Leadership &amp; Strategy</label>
-              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-culture"> OKX Culture &amp; Values</label>
+              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked id="f-ai"> AI Nativeness & Tool Usage</label>
+              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked id="f-tech"> Technical / Domain Depth</label>
+              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked id="f-lead"> Leadership & Strategy</label>
+              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked id="f-culture"> OKX Culture & Values</label>
               <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" id="f-crypto"> Crypto / Web3 Specific</label>
               <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border);font-size:12px;font-weight:700;color:var(--blue);letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">KATCH Competencies</div>
-              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-kK"> K — Knowledge</label>
-              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-kA"> A — Acumen</label>
-              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-kT"> T — Teamwork</label>
-              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-kC"> C — Cognition</label>
-              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-kH"> H — Hunger</label>
+              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked id="f-kK"> K — Knowledge</label>
+              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked id="f-kA"> A — Acumen</label>
+              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked id="f-kT"> T — Teamwork</label>
+              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked id="f-kC"> C — Cognition</label>
+              <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked id="f-kH"> H — Hunger</label>
 
               <div id="eng-focus-group" style="display:none;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);">
                 <div style="font-size:12px;font-weight:700;color:var(--green);letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">Engineering AI Dimensions</div>
-                <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-eng1"> Dim 1 — AI Tool Knowledge &amp; Trends</label>
-                <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-eng2"> Dim 2 — Claude Code / Prompt Engineering</label>
-                <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-eng3"> Dim 3 — AI-Assisted Engineering Practices</label>
-                <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-eng4"> Dim 4 — AI Safety &amp; Engineering Ethics</label>
+                <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked id="f-eng1"> Dim 1 — AI Tool Knowledge &amp; Trends</label>
+                <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked id="f-eng2"> Dim 2 — Claude Code / Prompt Engineering</label>
+                <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked id="f-eng3"> Dim 3 — AI-Assisted Engineering Practices</label>
+                <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked id="f-eng4"> Dim 4 — AI Safety &amp; Engineering Ethics</label>
                 <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" id="f-eng5"> Dim 5 — Team AI Leadership (TL/P7+)</label>
                 <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" id="f-eng6"> Dim 6 — Backend Core &amp; AI Integration</label>
               </div>
 
               <div id="pm-focus-group" style="display:none;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);">
                 <div style="font-size:12px;font-weight:700;color:var(--purple);letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">PM AI Dimensions</div>
-                <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-pm1"> AI Product Strategy &amp; Vision</label>
-                <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-pm2"> AI Tool Usage in PM Workflow</label>
-                <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked="" id="f-pm3"> AI Judgment, Safety &amp; Risk</label>
+                <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked id="f-pm1"> AI Product Strategy &amp; Vision</label>
+                <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked id="f-pm2"> AI Tool Usage in PM Workflow</label>
+                <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" checked id="f-pm3"> AI Judgment, Safety &amp; Risk</label>
                 <label style="display:flex;align-items:center;gap:9px;font-size:14.5px;cursor:pointer;"><input type="checkbox" id="f-pm4"> PM AI Leadership (Staff+)</label>
               </div>
             </div>
@@ -976,13 +955,13 @@ File attached 👆 Let me know if you have questions!</pre>
           <div class="f-row">
             <div class="f-group">
               <label class="f-label">No. of Questions</label>
-              <select class="f-select" id="q-count"><option>5</option><option selected="">10</option><option>15</option><option>20</option></select>
+              <select class="f-select" id="q-count"><option>5</option><option selected>10</option><option>15</option><option>20</option></select>
             </div>
             <div class="f-group">
               <label class="f-label">P-Level Context</label>
               <select class="f-select" id="q-plevel">
                 <option>P5 – Senior IC</option>
-                <option selected="">P6–P7 – Staff / Principal</option>
+                <option selected>P6–P7 – Staff / Principal</option>
                 <option>P8+ – Director+</option>
               </select>
             </div>
@@ -1341,7 +1320,7 @@ File attached 👆 Let me know if you have questions!</pre>
 
             <div class="f-group">
               <label class="f-label">Role Title</label>
-              <input class="f-input" id="src-title" placeholder="e.g. Senior Backend Engineer – Web3">
+              <input class="f-input" id="src-title" placeholder="e.g. Senior Backend Engineer – Web3"/>
             </div>
             <div class="f-row">
               <div class="f-group" style="margin-bottom:0;">
@@ -1350,10 +1329,10 @@ File attached 👆 Let me know if you have questions!</pre>
                   <option value="">Select...</option>
                   <option>Technology / Engineering</option>
                   <option>Product Management</option>
-                  <option>Growth &amp; Marketing</option>
+                  <option>Growth & Marketing</option>
                   <option>Data Science / Analytics</option>
-                  <option>Compliance &amp; Legal</option>
-                  <option>Finance &amp; Strategy</option>
+                  <option>Compliance & Legal</option>
+                  <option>Finance & Strategy</option>
                   <option>Business Development</option>
                   <option>Operations</option>
                   <option>Design / UX</option>
@@ -1372,15 +1351,15 @@ File attached 👆 Let me know if you have questions!</pre>
             </div>
             <div class="f-group" style="margin-top:12px;">
               <label class="f-label">Must-Have Skills / Keywords</label>
-              <input class="f-input" id="src-skills" placeholder="e.g. Go, Kafka, Web3, DeFi, system design">
+              <input class="f-input" id="src-skills" placeholder="e.g. Go, Kafka, Web3, DeFi, system design"/>
             </div>
             <div class="f-group">
               <label class="f-label">Nice-to-Have Skills</label>
-              <input class="f-input" id="src-nice" placeholder="e.g. Rust, L2, cross-border payments">
+              <input class="f-input" id="src-nice" placeholder="e.g. Rust, L2, cross-border payments"/>
             </div>
             <div class="f-group">
               <label class="f-label">Location / Market</label>
-              <input class="f-input" id="src-loc" placeholder="e.g. Singapore, Hong Kong, Remote-APAC">
+              <input class="f-input" id="src-loc" placeholder="e.g. Singapore, Hong Kong, Remote-APAC"/>
             </div>
           </div>
 
@@ -1399,7 +1378,7 @@ File attached 👆 Let me know if you have questions!</pre>
             <!-- LinkedIn URL input -->
             <div id="src-panel-url" class="f-group" style="margin-bottom:0;">
               <label class="f-label">LinkedIn Profile URL</label>
-              <input class="f-input" id="src-li-url" placeholder="https://www.linkedin.com/in/username" style="font-size:13px;">
+              <input class="f-input" id="src-li-url" placeholder="https://www.linkedin.com/in/username" style="font-size:13px;"/>
               <div style="font-size:11.5px;color:var(--text3);margin-top:5px;">Paste the profile URL of your benchmark candidate — we'll use their visible title, company and tenure as sourcing signals.</div>
             </div>
 
@@ -1416,14 +1395,14 @@ File attached 👆 Let me know if you have questions!</pre>
                 <span style="font-size:22px;">📄</span>
                 <span style="font-size:13px;font-weight:600;">Drop CV here or click to browse</span>
                 <span style="font-size:11.5px;color:var(--text3);">PDF or Word — we'll extract skills and background to guide sourcing</span>
-                <input type="file" accept=".pdf,.doc,.docx" style="display:none;" onchange="srcReadFile(this)">
+                <input type="file" accept=".pdf,.doc,.docx" style="display:none;" onchange="srcReadFile(this)"/>
               </label>
               <div id="src-file-preview" style="display:none;margin-top:8px;padding:9px 12px;background:var(--green-dim);border-radius:6px;font-size:12px;color:var(--green);"></div>
             </div>
 
             <div class="f-group" style="margin-top:14px;margin-bottom:0;">
               <label class="f-label">Industries / Companies to target</label>
-              <input class="f-input" id="src-industries" placeholder="e.g. Crypto exchanges, TradFi, fintech unicorns">
+              <input class="f-input" id="src-industries" placeholder="e.g. Crypto exchanges, TradFi, fintech unicorns"/>
             </div>
           </div>
 
@@ -1431,10 +1410,10 @@ File attached 👆 Let me know if you have questions!</pre>
           <div class="card">
             <div class="panel-title" style="margin-bottom:12px;">Step 3 — What to Generate</div>
             <div style="display:flex;flex-direction:column;gap:8px;">
-              <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;"><input type="checkbox" id="src-opt-bool" checked="" style="width:15px;height:15px;accent-color:#000;"> Boolean search strings (LinkedIn Recruiter)</label>
-              <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;"><input type="checkbox" id="src-opt-li" checked="" style="width:15px;height:15px;accent-color:#000;"> LinkedIn Recruiter filter directions</label>
-              <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;"><input type="checkbox" id="src-opt-co" checked="" style="width:15px;height:15px;accent-color:#000;"> Target company list</label>
-              <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;"><input type="checkbox" id="src-opt-msg" checked="" style="width:15px;height:15px;accent-color:#000;"> LinkedIn InMail outreach draft</label>
+              <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;"><input type="checkbox" id="src-opt-bool" checked style="width:15px;height:15px;accent-color:#000;"> Boolean search strings (LinkedIn Recruiter)</label>
+              <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;"><input type="checkbox" id="src-opt-li" checked style="width:15px;height:15px;accent-color:#000;"> LinkedIn Recruiter filter directions</label>
+              <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;"><input type="checkbox" id="src-opt-co" checked style="width:15px;height:15px;accent-color:#000;"> Target company list</label>
+              <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;"><input type="checkbox" id="src-opt-msg" checked style="width:15px;height:15px;accent-color:#000;"> LinkedIn InMail outreach draft</label>
             </div>
             <button class="btn" style="width:100%;margin-top:16px;padding:12px;font-size:14px;" onclick="runSourcing()">⌖ Generate Sourcing Pack</button>
           </div>
@@ -1741,29 +1720,47 @@ function copyBlock(id) {
 function openShareModal() {
   const m = document.getElementById('share-modal');
   m.style.display = 'flex';
+  // Always pre-fill with the GitHub Pages URL
+  const urlInput = document.getElementById('share-url-input');
+  if (urlInput) urlInput.value = 'https://louisalo-okx.github.io/okx-ta-tool/';
+  updateShareMsg();
 }
 function closeShareModal() {
   document.getElementById('share-modal').style.display = 'none';
 }
-// share-modal backdrop listener moved to DOMContentLoaded above
-function shareDownload() {
-  const a = document.createElement('a');
-  a.href = window.location.href.startsWith('blob')
-    ? window.location.href
-    : window.location.pathname;
-  // Re-serialize current page as a blob for download
-  const html = document.documentElement.outerHTML;
-  const blob  = new Blob([html], { type: 'text/html' });
-  a.href = URL.createObjectURL(blob);
-  a.download = 'OKX_TA_Hiring_Tool.html';
-  a.click();
-  setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+function updateShareMsg() {
+  const urlInput = document.getElementById('share-url-input');
+  const msgEl    = document.getElementById('share-msg-text');
+  if (!urlInput || !msgEl) return;
+  const url = urlInput.value.trim();
+  const isPlaceholder = url === 'Paste your Netlify URL here' || !url.startsWith('http');
+  const urlLine = isPlaceholder ? '[Paste your link here]' : url;
+  msgEl.textContent =
+`👋 Hey! Sharing the OKX TA Hiring Platform — built to speed up CV screening and sourcing.
+
+🔗 ${urlLine}
+
+✅ AI + KATCH CV screening
+✅ Interview question generator
+✅ Sourcing Copilot (Boolean strings, target companies, InMail drafts)
+
+Open the link in Chrome or Safari for the best experience. Let me know if you have questions!`;
+}
+function copyShareUrl(btn) {
+  const urlInput = document.getElementById('share-url-input');
+  if (!urlInput) return;
+  safeCopy(urlInput.value, btn);
 }
 function copyShareMsg(id, btn) {
   const el = document.getElementById(id);
   if (!el) return;
   safeCopy(el.innerText || el.textContent, btn);
 }
+// Sync message when URL input changes
+window.addEventListener('DOMContentLoaded', function() {
+  const urlInput = document.getElementById('share-url-input');
+  if (urlInput) urlInput.addEventListener('input', updateShareMsg);
+});
 
 function srcSwitchTab(tab) {
   ['url','text','file'].forEach(t => {
@@ -2815,6 +2812,5 @@ function toast(msg, isErr=false) {
   clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove('show'), 3200);
 }
 </script>
-
-
-</body></html>
+</body>
+</html>
